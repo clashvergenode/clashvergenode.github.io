@@ -1,4 +1,4 @@
-# 5月19日|最高速度22.1M/S，2024最新ClashVerge免费节点高速订阅链接  更新时间 2024-05-19 23:24:24
+# 5月19日|最高速度19.9M/S，2024最新ClashVerge免费节点高速订阅链接  更新时间 2024-05-19 23:29:50
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashvergenode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
