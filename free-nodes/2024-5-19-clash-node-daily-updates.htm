@@ -203,12 +203,24 @@
     </footer>
     <!-- ========================= footer end ========================= -->
     <!-- ========================= JS here ========================= -->
+    <script src="/assets/addons/xcblog/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
     <script src="/assets/addons/xcblog/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
     <script src="/assets/addons/xcblog/js/frontend/clashvergenode/count-up.min.js"></script>
     <script src="/assets/addons/xcblog/js/frontend/clashvergenode/tiny-slider.js"></script>
     <script src="/assets/addons/xcblog/js/frontend/clashvergenode/wow.min.js"></script>
     <script src="/assets/addons/xcblog/js/frontend/clashvergenode/polifill.js"></script>
     <script src="/assets/addons/xcblog/js/frontend/clashvergenode/main.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
 </body>
 
 </html>
