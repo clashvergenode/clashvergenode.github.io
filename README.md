@@ -1,4 +1,4 @@
-# 5月31日|最高速度19.3M/S，2024最新ClashVerge免费节点高速订阅链接  更新时间 2024-05-31 10:44:43
+# 6月2日|最高速度22.1M/S，2024最新ClashVerge免费节点高速订阅链接  更新时间 2024-06-02 13:16:38
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashvergenode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,19 +9,19 @@
 
 ### Clash订阅链接
 
-- https://clashvergenode.github.io/uploads/2024/05/0-20240531.yaml
-- https://clashvergenode.github.io/uploads/2024/05/1-20240531.yaml
-- https://clashvergenode.github.io/uploads/2024/05/2-20240531.yaml
-- https://clashvergenode.github.io/uploads/2024/05/3-20240531.yaml
-- https://clashvergenode.github.io/uploads/2024/05/4-20240531.yml
+- https://clashvergenode.github.io/uploads/2024/06/0-20240602.yaml
+- https://clashvergenode.github.io/uploads/2024/06/1-20240602.yaml
+- https://clashvergenode.github.io/uploads/2024/06/2-20240602.yaml
+- https://clashvergenode.github.io/uploads/2024/06/3-20240602.yaml
+- https://clashvergenode.github.io/uploads/2024/06/4-20240602.yml
 
 ### V2ray订阅链接
 
-- https://clashvergenode.github.io/uploads/2024/05/0-20240531.txt
-- https://clashvergenode.github.io/uploads/2024/05/1-20240531.txt
-- https://clashvergenode.github.io/uploads/2024/05/2-20240531.txt
-- https://clashvergenode.github.io/uploads/2024/05/3-20240531.txt
-- https://clashvergenode.github.io/uploads/2024/05/4-20240531.txt
+- https://clashvergenode.github.io/uploads/2024/06/0-20240602.txt
+- https://clashvergenode.github.io/uploads/2024/06/1-20240602.txt
+- https://clashvergenode.github.io/uploads/2024/06/2-20240602.txt
+- https://clashvergenode.github.io/uploads/2024/06/3-20240602.txt
+- https://clashvergenode.github.io/uploads/2024/06/4-20240602.txt
 
 ## 更多clash节点订阅 ：
 
