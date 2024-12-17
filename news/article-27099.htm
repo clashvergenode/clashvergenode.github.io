@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-27099.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址</title>
+        <meta name="description" content="本例中以CentOS 7举例说明如何设置Linux开机自动获取IP地址和设置固定IP地址。 自动获取动态IP地址 1.输入“ip addr”并按回车键确定，发现无法获取IP(CentOS 7默认没有i" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                                                <a class="navbar-brand" href="/">
+                            Clash Verge Node
+                        </a>
+                                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">联系</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img href="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>本例中以CentOS 7举例说明如何设置Linux开机自动获取IP地址和设置固定IP地址。</p> <p>自动获取动态IP地址</p> <p>1.输入“ip addr”并按回车键确定，发现无法获取IP(CentOS 7默认没有ifconfig命令)，记录下网卡名称(本例中为ens33，下图黄色框内)。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/6f9bfdbadb847a58800ee789ce2f2201.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>2.输入“cd /etc/sysconfig/network-scripts/”按回车键确定，继续输入“ls”按回车键查看文件。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/4021b5d7d307d48e3cbdb0b962718a8b.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>3.输入“vi ifcfg-ens33”并按回车键确定(网卡名称可能不同)。亦可在第二步直接输入“cd /etc/sysconfig/network-scripts/ifcfg-ens33”直接编辑文件。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/e126a4700023349a24179f012ca80171.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>4.查看最后一项(蓝色框内)，发现为“ONBOOT=no”。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/3414a5be95076e7b7ce24e2038f103e0.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>5.按“i”键进入编辑状态，将最后一行“no”修改为“yes”，然后按“ESC”键退出编辑状态，并输入“:x”保存退出。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/5349894efd411cd7bada8c3b08944d9c.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>6.输入“service network restart”重启服务,亦可输入“systemctl restart netwrok”。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/3c4acb15464161204356f63ac90fd5c0.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>7.再次输入“ip addr”查看，现已可自动获取IP地址。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/2c152be08aef525bbd4fe6a9755af2c4.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>设置静态IP地址</p> <p>8.输入“cd /etc/sysconfig/network-scripts/”按回车键确定，继续输入“ls”按回车键查看文件，确定网卡名称。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/4021b5d7d307d48e3cbdb0b962718a8b.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>9.输入“vi ifcfg-ens33”并按回车键确定(网卡名称可能不同)。如确知网卡名称可直接输入“cd /etc/sysconfig/network-scripts/ifcfg-ens33”编辑文件。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/e126a4700023349a24179f012ca80171.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>10.按“i”进入编辑状态，设置为“BOOTPROTO='static'”(如设置为none则禁止DHCP，static则启用静态IP地址，设置为dhcp则为开启DHCP服务)，并修改其他部分为您的设置，本例中为192.168.1.200/24，GW:192.168.1.1，可根据您的需要配置IPV6部分。</p> <p>注意：NM_CONTROLLED=no和ONBOOT=yes可根据您的需求进行设置。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/e67e2d36973463cd24342abad83e7a32.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>11.确认无误后按“ESC”退出编辑状态，并输入“:x”保存退出，输入“service network restart”重启服务后输入“ifconfig”查看网络配置。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/bb827f9e5021c6da9bb3fa519376063e.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>12.如需设置DNS(需在第9步设置NM_CONTROLLED=no)则输入“vi /etc/resolv.conf”并按回车键执行命令(如已在第9步配置DNS则可省略此步骤)。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/066e3108825264aa19429933457e0781.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>13.在此文件里面输入DNS服务器地址(本例中以广东电信为例，亦可输入路由器DNS地址)并保存退出。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221105/e37c1697bb1957ab810ac713466e1dda.jpg" alt="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址"></p> <p>以上就是本文的全部内容，希望对大家的学习有所帮助，也希望大家多多支持脚本之家。</p> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-26636.htm">动物疫苗属于生物农业吗为什么不能用生物制品（动物疫苗是什么单位）</a></p>
+                                        <p>下一个：<a href="/news/article-27101.htm">活体猫托运多少钱（活猫托运价格查询）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-23377.htm" title="动物打疫苗后的不良反应是什么意思呢（动物打疫苗后的不良反应是什么意思呢图片）">动物打疫苗后的不良反应是什么意思呢（动物打疫苗后的不良反应是什么意思呢图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-node-share-links.htm" title="12月11日|最高速度19.8M/S，2024最新ClashVerge免费节点高速订阅链接">12月11日|最高速度19.8M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26172.htm" title="学兽医去哪里学比较好（兽医证可以自考自学吗）">学兽医去哪里学比较好（兽医证可以自考自学吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-24-shadowrocket-node.htm" title="7月24日|最高速度22.3M/S，2024最新ClashVerge免费节点高速订阅链接">7月24日|最高速度22.3M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25238.htm" title="开一个宠物零食工厂赚钱吗 开一个宠物零食工厂赚钱吗知乎">开一个宠物零食工厂赚钱吗 开一个宠物零食工厂赚钱吗知乎</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-22-clash-v2ray-ss-ssr.htm" title="8月22日|最高速度22.6M/S，2024最新ClashVerge免费节点高速订阅链接">8月22日|最高速度22.6M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-23-free-clash.htm" title="8月23日|最高速度20.4M/S，2024最新ClashVerge免费节点高速订阅链接">8月23日|最高速度20.4M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-free-ssr-subscribe.htm" title="9月17日|最高速度21.6M/S，2024最新ClashVerge免费节点高速订阅链接">9月17日|最高速度21.6M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-clash-v2ray-ss-ssr.htm" title="10月21日|最高速度20.3M/S，2024最新ClashVerge免费节点高速订阅链接">10月21日|最高速度20.3M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-10-free-v2ray.htm" title="7月10日|最高速度21.1M/S，2024最新ClashVerge免费节点高速订阅链接">7月10日|最高速度21.1M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
