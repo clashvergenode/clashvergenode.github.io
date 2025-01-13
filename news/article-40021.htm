@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-40021.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>python连接MySQL数据库并读取数据库中的数据表存入list中</title>
+        <meta name="description" content="1 Python3安装pymysql第三方模块 2 操作Mysql数据库 3 封装成函数调用     Python2中是MySQLdb模块。 Python3中没有MySQLdb模块了，所以使用pymy" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                                                <a class="navbar-brand" href="/">
+                            Clash Verge Node
+                        </a>
+                                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">联系</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            python连接MySQL数据库并读取数据库中的数据表存入list中                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img href="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3> </h3> <ul> <li><a href="#1_Python3pymysql_2" rel="nofollow">1 Python3安装pymysql第三方模块</a></li> <li><a href="#2_Mysql_10" rel="nofollow">2 操作Mysql数据库</a></li> <li><a href="#3__20" rel="nofollow">3 封装成函数调用</a></li> </ul> </div> </h1> <ul> <li>Python2中是MySQLdb模块。</li> <li>Python3中没有MySQLdb模块了，所以使用<strong>pymysql</strong> </li> </ul> <pre><code class="prism language-powershell">conda install pymysql </code></pre> </h1> <ol> <li>创建连接，指定数据库的ip地址，账号、密码、端口号、要操作的数据库、字符集</li> <li>创建游标</li> <li>执行sql</li> <li>获取结果</li> <li>关闭游标</li> <li>连接关闭</li> </ol> <p>详细可参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/hwtfamily/p/8982836.html"  rel="nofollow">https://www.cnblogs.com/hwtfamily/p/8982836.html</a></p> </h1> <p>以下代码亲测可用，配有详细注释：</p> <pre><code class="prism language-python"><span class="token comment"># -*- coding:utf-8 -*-</span> <span class="token comment"># 从MySQL数据库的数据表中读取每一行数据放入列表中，最后返回一个完整的列表</span>  <span class="token keyword">import</span> pymysql  <span class="token keyword">def</span> <span class="token function">get_mysql_list</span><span class="token punctuation">(</span>database<span class="token punctuation">,</span>table_name<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token comment">#  创建连接，指定数据库的ip地址，账号、密码、端口号、要操作的数据库、字符集</span>     host<span class="token punctuation">,</span>user<span class="token punctuation">,</span>pwd <span class="token operator">=</span> <span class="token string">'ip'</span><span class="token punctuation">,</span><span class="token string">'root'</span><span class="token punctuation">,</span><span class="token string">''</span>     conn <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>host<span class="token operator">=</span>host<span class="token punctuation">,</span> user<span class="token operator">=</span>user<span class="token punctuation">,</span> passwd<span class="token operator">=</span>pwd<span class="token punctuation">,</span> db<span class="token operator">=</span>database<span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">3306</span><span class="token punctuation">,</span> charset<span class="token operator">=</span><span class="token string">'utf8'</span><span class="token punctuation">)</span>    <span class="token comment"># port必须写int类型,MySQL的默认端口为3306. charset必须写utf8</span>     <span class="token comment"># 创建游标</span>     cursor <span class="token operator">=</span> conn<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment"># 执行sql语句</span>     sql <span class="token operator">=</span> <span class="token string">'select * from %s ;'</span> <span class="token operator">%</span> table_name     cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>      <span class="token comment"># 获取到sql执行的全部结果</span>     results <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchall<span class="token punctuation">(</span><span class="token punctuation">)</span>     table_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>     <span class="token keyword">for</span> r <span class="token keyword">in</span> results<span class="token punctuation">:</span>         table_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 由于fetchall方法返回的一个元组，需要每一行为列表形式的数据，将其转换为list类型。</span>      cursor<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">#关闭游标</span>     conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment">#关闭连接</span>          <span class="token keyword">return</span> <span class="token builtin">list</span><span class="token punctuation">(</span>table_list<span class="token punctuation">)</span> <span class="token comment"># 返回一个完整的列表数据</span>   <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>     x<span class="token operator">=</span>get_mysql_list<span class="token punctuation">(</span><span class="token string">'spidersData'</span><span class="token punctuation">,</span> <span class="token string">'词典'</span><span class="token punctuation">)</span>     <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39532.htm">动物疫苗产业链分析 动物疫苗产业链分析报告</a></p>
+                                        <p>下一个：<a href="/news/article-40022.htm">学宠物美容有前途吗男生（男的学宠物美容怎么样）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37075.htm" title="DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装">DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装</a></li>
+                        <li class="py-2"><a href="/news/article-29407.htm" title="SpringBoot整合Shiro和Redis的示例代码_java">SpringBoot整合Shiro和Redis的示例代码_java</a></li>
+                        <li class="py-2"><a href="/news/article-19712.htm" title="生产狗粮的企业（狗粮生产公司）">生产狗粮的企业（狗粮生产公司）</a></li>
+                        <li class="py-2"><a href="/news/article-20174.htm" title="宠物店一个月能卖多少狗粮啊视频（宠物店一个月能卖多少只狗）">宠物店一个月能卖多少狗粮啊视频（宠物店一个月能卖多少只狗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-27-shadowrocket-node.htm" title="10月27日|最高速度22.9M/S，2024最新ClashVerge免费节点高速订阅链接">10月27日|最高速度22.9M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-node-share-links.htm" title="12月11日|最高速度19.8M/S，2024最新ClashVerge免费节点高速订阅链接">12月11日|最高速度19.8M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-ssr-node.htm" title="11月22日|最高速度20.6M/S，2024最新ClashVerge免费节点高速订阅链接">11月22日|最高速度20.6M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39532.htm" title="动物疫苗产业链分析 动物疫苗产业链分析报告">动物疫苗产业链分析 动物疫苗产业链分析报告</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-free-high-speed-nodes.htm" title="11月3日|最高速度18.3M/S，2024最新ClashVerge免费节点高速订阅链接">11月3日|最高速度18.3M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22467.htm" title="动物疫苗接种方法介绍（动物疫苗接种方法介绍图片）">动物疫苗接种方法介绍（动物疫苗接种方法介绍图片）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
