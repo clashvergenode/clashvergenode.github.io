@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-45480.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>SpringCloud 服务调用监控 Hystrix Dashboard、Turbine</title>
+        <meta name="description" content="目录      概述 hystrix dashboard的使用 turbine的使用 说明        概述 actuator可以监控应用状态，但数据展示不直观，springboot admin、h" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-45480.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="SpringCloud 服务调用监控 Hystrix Dashboard、Turbine" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/b4ae3aec7eb43237b8fb75f2c0c28acb.webp" />
+        <meta property="og:release_date" content="2025-01-24T09:28:03" />
+    <meta property="og:updated_time" content="2025-01-24T09:28:03" />
+        <meta property="og:description" content="目录      概述 hystrix dashboard的使用 turbine的使用 说明        概述 actuator可以监控应用状态，但数据展示不直观，springboot admin、h" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringCloud 服务调用监控 Hystrix Dashboard、Turbine">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                                                <a class="navbar-brand" href="/">
+                            Clash Verge Node
+                        </a>
+                                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">联系</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            SpringCloud 服务调用监控 Hystrix Dashboard、Turbine                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img href="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> <div class="toc"> <h3>目录</h3> <ul> <li> <ul> <li> <ul> <li><a href="#_3" rel="nofollow">概述</a></li> <li><a href="#hystrix_dashboard_14" rel="nofollow">hystrix dashboard的使用</a></li> <li><a href="#turbine_71" rel="nofollow">turbine的使用</a></li> <li><a href="#_141" rel="nofollow">说明</a></li> </ul> </li> </ul> </li> </ul> </div> <p></p> <h3><a id="_3" rel="nofollow"></a>概述</h3> <p>actuator可以监控应用状态，但数据展示不直观，springboot admin、hystrix dashboard、turbine都集成了actuator，并提供了UI界面来展示应用状态。</p> <p>springboot admin、hystrix dashboard、turbine都可以监控应用，但监控的维度不同</p> <ul> <li>springboot admin：关注应用本身的状态，可以监控所有服务，可以看到cpu、内存、线程、硬盘、jvm的情况，可以看到应用输出的日志</li> <li>hystrix dashboard：关注服务之间的调用情况，服务消费者 -&gt; 服务提供者，监控的是服务消费者。以节点为单位进行监控，不能统计服务集群的信息</li> <li>turbine：和hystrix dashboard基本一样，区别是turbine是以集群为单位进行监控，可以看到服务集群的整体信息</li> </ul> <h3><a id="hystrix_dashboard_14" rel="nofollow"></a>hystrix dashboard的使用</h3> <p><strong>依赖</strong></p> <ul> <li>Spring Cloud Discovery -&gt; Eureka Discovery Client</li> <li>Spring Cloud Circuit Breaker -&gt; Hystrix DashBoard [Maintenance]</li> </ul> <p>也可以手动添加依赖</p> <pre><code class="prism language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token comment">&lt;!-- 包含了spring-boot-start-web、spring-boot-starter-actuator --&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-netflix-hystrix-dashboard<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre> <p>单独作为一个服务只需要添加这两个依赖即可，如果不注册到eureka server上，也可以不要eureka client，但更推荐都把服务注册到注册中心上，通过网关统一访问。</p> <p><strong>引导类</strong><br /> 加@EnableEurekaClient、@EnableHystrixDashboard</p> <p><strong>yml</strong></p> <pre><code class="prism language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span><span class="token key atrule">port</span><span class="token punctuation">:</span><span class="token number">7501</span><span class="token key atrule">spring</span><span class="token punctuation">:</span><span class="token key atrule">application</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> hystrix<span class="token punctuation">-</span>dashboard<span class="token key atrule">eureka</span><span class="token punctuation">:</span><span class="token key atrule">client</span><span class="token punctuation">:</span><span class="token key atrule">service-url</span><span class="token punctuation">:</span><span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>7500/eureka/<span class="token comment">#允许访问dashboard的web页面</span><span class="token key atrule">hystrix</span><span class="token punctuation">:</span><span class="token key atrule">dashboard</span><span class="token punctuation">:</span><span class="token comment">#也可以指定具体的域名|ip</span><span class="token key atrule">proxy-stream-allow-list</span><span class="token punctuation">:</span><span class="token string">"*"</span></code></pre> <p><strong>运行</strong></p> <p>启动应用，访问 localhost:7501/hystrix （hystrix dashboard的ip:port）进入hystrix dashboard的页面。</p> <p>输入要监控的服务消费者的流，eg. http://localhost:8781/actuator/hystrix.stream<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/37551115dc4d60c4fa99398ef8386c22.jpg" alt="SpringCloud 服务调用监控 Hystrix Dashboard、Turbine"></p> <h3><a id="turbine_71" rel="nofollow"></a>turbine的使用</h3> <p><strong>依赖</strong></p> <p>勾选Spring Cloud Circuit Breaker的2个依赖</p> <ul> <li>Hystrix DashBoard [Maintenance]</li> <li>Turbine [Maintenance]</li> </ul> <p>也可以手动添加依赖</p> <pre><code class="prism language-xml"><span class="token comment">&lt;!-- 已经包含了spring-boot-start-web、spring-boot-starter-actuator --&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-netflix-hystrix-dashboard<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token comment">&lt;!-- 已经包含了eureka client --&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-netflix-turbine<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre> <p>只添加这2个依赖即可。</p> <p>turbine监控的服务集群信息是对hystrix dashboard监控的服务节点信息的聚合、统计，是建立在hystrix dashboard之上的，使用的仍是hystrix dashboard的web页面。</p> <p><strong>引导类</strong><br /> 加@EnableEurekaClient、@EnableHystrixDashboard、@EnableTurbine</p> <p><strong>yml</strong></p> <pre><code class="prism language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span><span class="token key atrule">port</span><span class="token punctuation">:</span><span class="token number">7502</span><span class="token key atrule">spring</span><span class="token punctuation">:</span><span class="token key atrule">application</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> turbine<span class="token key atrule">eureka</span><span class="token punctuation">:</span><span class="token key atrule">client</span><span class="token punctuation">:</span><span class="token key atrule">service-url</span><span class="token punctuation">:</span><span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>7500/eureka/<span class="token comment">#允许访问dashboard的web页面</span><span class="token key atrule">hystrix</span><span class="token punctuation">:</span><span class="token key atrule">dashboard</span><span class="token punctuation">:</span><span class="token comment">#也可以指定具体的域名|ip</span><span class="token key atrule">proxy-stream-allow-list</span><span class="token punctuation">:</span><span class="token string">"*"</span><span class="token key atrule">turbine</span><span class="token punctuation">:</span><span class="token comment">#要监控的服务，有多个时逗号分隔</span><span class="token key atrule">app-config</span><span class="token punctuation">:</span> user<span class="token punctuation">-</span>server<span class="token punctuation">,</span>order<span class="token punctuation">-</span>server<span class="token key atrule">cluster-name-expression</span><span class="token punctuation">:</span> new String("default")<span class="token comment">#以host+port区分服务节点。默认只以host来区分服务节点</span><span class="token key atrule">combine-host-port</span><span class="token punctuation">:</span><span class="token boolean important">true</span></code></pre> <p><strong>运行</strong></p> <p>启动应用，访问 localhost:7502/hystrix （turbine的ip:port）进入turbine的页面。</p> <p>输入turbine的流，eg. http://localhost:7501/turbine.stream，会显示yml中配置的所有服务集群的信息。</p> <h3><a id="_141" rel="nofollow"></a>说明</h3> <ul> <li>hystrix dashboard是输入要监控的服务节点的流，http://localhost:7504（要监控的服务节点的host+port）/actuator/hystrix.stream</li> <li>turbine是输入turbine自身的流，http://localhost:7502（turbine本身的host+port）/turbine.stream</li> </ul> <p>可直接在浏览器地址栏输入流的url查看原始数据。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44992.htm">Docker基础 — 36、CMD指令和ENTRYPOINT指令的区别</a></p>
+                                        <p>下一个：<a href="/news/article-45482.htm">PostCSS分享</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-42005.htm" title="无货源怎么做闲鱼具体怎么操作?（无货源闲鱼卖货流程）">无货源怎么做闲鱼具体怎么操作?（无货源闲鱼卖货流程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-free-shadowrocket-node.htm" title="10月28日|最高速度20.5M/S，2024最新ClashVerge免费节点高速订阅链接">10月28日|最高速度20.5M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37573.htm" title="小猫养多久才认主人?怎样不让猫得猫藓呢（小猫养多久才认家）">小猫养多久才认主人?怎样不让猫得猫藓呢（小猫养多久才认家）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-free-subscribe-node.htm" title="1月17日|最高速度21.8M/S，2025最新ClashVerge免费节点高速订阅链接">1月17日|最高速度21.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-node-share.htm" title="12月27日|最高速度22.7M/S，2024最新ClashVerge免费节点高速订阅链接">12月27日|最高速度22.7M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29407.htm" title="SpringBoot整合Shiro和Redis的示例代码_java">SpringBoot整合Shiro和Redis的示例代码_java</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-free-v2ray.htm" title="10月10日|最高速度19.1M/S，2024最新ClashVerge免费节点高速订阅链接">10月10日|最高速度19.1M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24533.htm" title="开宠物食品加工厂需要什么手续（开个宠物食品厂要投资多少钱）">开宠物食品加工厂需要什么手续（开个宠物食品厂要投资多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-clash.htm" title="1月3日|最高速度21.6M/S，2025最新ClashVerge免费节点高速订阅链接">1月3日|最高速度21.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-clash-windows.htm" title="11月7日|最高速度21.7M/S，2024最新ClashVerge免费节点高速订阅链接">11月7日|最高速度21.7M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

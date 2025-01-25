@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-44991.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Linux环境中NFS服务的搭建</title>
+        <meta name="description" content="NFS，是Network File System的简写，即网络文件系统。允许一个系统在网络上与他人共享目录和文件。通过使用NFS，用户和程序可以像访问本地文件一样访问远端系统上的文件。 一、服务器端搭" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-44991.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="Linux环境中NFS服务的搭建" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/9fcb76b5179b6053e89910347d1b7c43.webp" />
+        <meta property="og:release_date" content="2025-01-23T10:41:07" />
+    <meta property="og:updated_time" content="2025-01-23T10:41:07" />
+        <meta property="og:description" content="NFS，是Network File System的简写，即网络文件系统。允许一个系统在网络上与他人共享目录和文件。通过使用NFS，用户和程序可以像访问本地文件一样访问远端系统上的文件。 一、服务器端搭" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Linux环境中NFS服务的搭建">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                                                <a class="navbar-brand" href="/">
+                            Clash Verge Node
+                        </a>
+                                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">联系</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            Linux环境中NFS服务的搭建                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img href="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>NFS，是Network File System的简写，即网络文件系统。允许一个系统在网络上与他人共享目录和文件。通过使用NFS，用户和程序可以像访问本地文件一样访问远端系统上的文件。</p> <p><strong>一、服务器端搭建：</strong></p> <p>1. 下载安装nfs软件和rpc软件：</p> <pre><code>yum install nfs-utils rpcbind -y</code></pre> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rpc服务：remote procedure&nbsp;call，远程过程调用，nfs&nbsp;的各项功能都必须要向 rpc&nbsp;注册，因此 rpc才能了解 nfs&nbsp;服务的各项功能的port number、pid和 nfs&nbsp;在主机所监听的IP等，而客户端才能够通过 rpc&nbsp;的询问找到正确对应的端口。因此，安装完成要先启动 rpc 服务，再启动 nfs 服务。</p> <pre><code>[root@nfs-serer ~]# systemctl start rpcbind        \\启动rpc服务 [root@nfs-serer ~]# systemctl enable rpcbind       \\设置rpc服务开机自启动 [root@nfs-serer ~]# systemctl status rpcbind       \\查看rpc服务运行状态  [root@nfs-serer ~]# systemctl start nfs        \\启动nfs服务 [root@nfs-serer ~]# systemctl enable nfs       \\设置nfs服务开机自启动 [root@nfs-serer ~]# systemctl status nfs       \\查看nfs服务运行状态  [root@nfs-serer ~]# rpcinfo -p       \\查看RPC服务运行报告信息，是否已检测到nfs服务</code></pre> <p>2. 设置nfs服务的配置文件：/etc/exports</p> <pre><code>/data    192.168.139.0/24(rw,rsync,no_all_squash,root_squash)</code></pre> <p>（1）参数解释：</p> <table border="1" cellpadding="1" cellspacing="1" style="width:500px;"> <tbody> <tr> <td>/data</td> <td>nfs服务共享的目录</td> </tr> <tr> <td>192.168.139.0/24</td> <td>允许远程挂载的主机网段，可以写入多个网段</td> </tr> <tr> <td>rw</td> <td>共享的目录具有读写权限</td> </tr> <tr> <td>ro</td> <td>共享的目录只有读权限</td> </tr> <tr> <td>sync</td> <td>采用同步方式存储数据，直接将数据存入主机的硬盘。数据写入安全。</td> </tr> <tr> <td>async</td> <td>采用异步方式存储数据，先将数据存储到缓存，再将数据写入硬盘。数据存储读取快，但数据保存存在风险。</td> </tr> <tr> <td>no_root_squash</td> <td>不对root用户身份进行转换</td> </tr> <tr> <td>root_squash</td> <td>对root用户身份进行转换（转换成 nfsnobody）</td> </tr> <tr> <td>all_squash</td> <td>对所有普通用户进行身份转换</td> </tr> <tr> <td>no_all_squash</td> <td>不对普通用户进行身份转换（默认设置）</td> </tr> <tr> <td>anonuid</td> <td>用于映射新的uid，替换nfsnobody用户</td> </tr> <tr> <td>anongid</td> <td>用于映射新的gid，替换nfsnobody用户</td> </tr> </tbody> </table> <p>配置完，重新加载nfs服务。</p> <p>3. 创建共享目录，设置权限</p> <pre><code>[root@nfs-serer ~]# mkdir /data [root@nfs-serer ~]# chown -R nfsnobody:nfsnobody /data</code></pre> <p>二、客户端配置</p> <p>1. 安装nfs服务，如果不安装，挂载时，无法识别nfs文件类型。</p> <p>2. 挂载，将Web服务器中用户的上传文件共享到nfs服务器的/data目录：</p> <pre><code>[root@nginx_server_a ~]# mount -t nfs 192.168.139.135:/data /application/www/uploads [root@nginx_server_a ~]# df -h    //检查挂载成功与否</code></pre> <p>三、设置开机自启动</p> <p>四、安全设置</p> <p>为了防止其他用户登录到web服务器对用户上传的文件进行破坏，在nfs服务器上可以创建一个新的虚拟用户及用户组对共享文件夹进行管理。同时，在其他服务器上也要创建相同的虚拟用户及用户组，该虚拟用户和用户组应该具有相同的UID和GID。并对nfs的配置文件进行如下设置：</p> <pre><code>/data    192.168.139.0/24(rw,rsync,no_all_squash,root_squash)</code></pre> <p>如此，其他的用户登录web服务器，包括root用户都不能在挂载点下进行创建和删除操作。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44496.htm">Halo 开源项目学习注册与登录</a></p>
+                                        <p>下一个：<a href="/news/article-44992.htm">Docker基础 — 36、CMD指令和ENTRYPOINT指令的区别</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-22467.htm" title="动物疫苗接种方法介绍（动物疫苗接种方法介绍图片）">动物疫苗接种方法介绍（动物疫苗接种方法介绍图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-free-node-subscribe.htm" title="1月19日|最高速度19.5M/S，2025最新ClashVerge免费节点高速订阅链接">1月19日|最高速度19.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22921.htm" title="动物防疫站能打疫苗吗（动物防疫站可以驱虫吗）">动物防疫站能打疫苗吗（动物防疫站可以驱虫吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-clash-node-daily-updates.htm" title="12月18日|最高速度21.2M/S，2024最新ClashVerge免费节点高速订阅链接">12月18日|最高速度21.2M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-30845.htm" title="河南兽药品牌排名（河南最好兽药厂家直销）">河南兽药品牌排名（河南最好兽药厂家直销）</a></li>
+                        <li class="py-2"><a href="/news/article-42004.htm" title="SpringBoot整合 &#8211; 依赖以及配置文件">SpringBoot整合 &#8211; 依赖以及配置文件</a></li>
+                        <li class="py-2"><a href="/news/article-26636.htm" title="动物疫苗属于生物农业吗为什么不能用生物制品（动物疫苗是什么单位）">动物疫苗属于生物农业吗为什么不能用生物制品（动物疫苗是什么单位）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe.htm" title="12月16日|最高速度22.1M/S，2024最新ClashVerge免费节点高速订阅链接">12月16日|最高速度22.1M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-42503.htm" title="猫咪疫苗3针多少钱啊（猫咪的三针疫苗多少钱一只）">猫咪疫苗3针多少钱啊（猫咪的三针疫苗多少钱一只）</a></li>
+                        <li class="py-2"><a href="/news/article-45480.htm" title="SpringCloud 服务调用监控 Hystrix Dashboard、Turbine">SpringCloud 服务调用监控 Hystrix Dashboard、Turbine</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
