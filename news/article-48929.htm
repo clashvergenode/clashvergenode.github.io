@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-48929.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>kafka集群安全化之启用kerberos与acl</title>
+        <meta name="description" content="在我们部署完kafka之后，虽然我们已经可以“肆意”的用kafka了，但是在一个大公司的实际生产环境中，kafka集群往往十分庞大，每个使用者都应该只关心自己所负责的Topic，并且对其他人所使用的T" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-48929.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="kafka集群安全化之启用kerberos与acl" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/f1d78a892a003a18d8aa04681be003c4.webp" />
+        <meta property="og:release_date" content="2025-01-31T07:18:30" />
+    <meta property="og:updated_time" content="2025-01-31T07:18:30" />
+        <meta property="og:description" content="在我们部署完kafka之后，虽然我们已经可以“肆意”的用kafka了，但是在一个大公司的实际生产环境中，kafka集群往往十分庞大，每个使用者都应该只关心自己所负责的Topic，并且对其他人所使用的T" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="kafka集群安全化之启用kerberos与acl">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                                                <a class="navbar-brand" href="/">
+                            Clash Verge Node
+                        </a>
+                                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="#">关于</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">联系</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            kafka集群安全化之启用kerberos与acl                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>在我们部署完kafka之后，虽然我们已经可以“肆意”的用kafka了，但是在一个大公司的实际生产环境中，kafka集群往往十分庞大，每个使用者都应该只关心自己所负责的Topic，并且对其他人所使用的Topic没有权限。这样一来可以将资源隔离开来，二来可以防止误操作。</p> <p>在权限控制之前，我们必须要启用的就是用户认证，没有用户，自然没有权限一说了。</p> </h1> <h2>2.1 在KDC中添加kafka用户，并生成keytab</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>新建kfaka用户</p> </td> <td> <p>kadmin.local -q 'addprinc -randkey kafka/{hostname}@{REALM}'</p> </td> </tr> <tr> <td> <p>生成keytab</p> </td> <td> <p>kadmin.local -q "ktadd -k /etc/security/keytabs/{keytabname}.keytab kafka/{hostname}@{REALM}"</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <p>&nbsp;</p> <p><span style="color:#FF0000;">注意：</span></p> <p><span style="color:#FF0000;">1</span><span style="color:#FF0000;">、如果之前</span><span style="color:#FF0000;">zookeeper</span><span style="color:#FF0000;">没有启用</span><span style="color:#FF0000;">kerberos</span><span style="color:#FF0000;">，这里也要启用</span><span style="color:#FF0000;">zookeeper</span><span style="color:#FF0000;">的</span><span style="color:#FF0000;">kerberos</span></p> <p><span style="color:#FF0000;">2</span><span style="color:#FF0000;">、如果之前在</span><span style="color:#FF0000;">CM</span><span style="color:#FF0000;">中启用了</span><span style="color:#FF0000;">kerberos</span><span style="color:#FF0000;">，我们可以直接从</span><span style="color:#FF0000;">CM</span><span style="color:#FF0000;">中获取</span><span style="color:#FF0000;">keytab</span><span style="color:#FF0000;">，但是注意</span><span style="color:#FF0000;">keytab</span><span style="color:#FF0000;">一定要保持最新的，否则认证不会通过，</span><span style="color:#FF0000;">keytab</span><span style="color:#FF0000;">的位置是：</span></p> <p><span style="color:#FF0000;">/var/run/cloudera-scm-agent/process/****-kafka-KAFKA_BROKER/kafka.keytab</span></p> <p><span style="color:#FF0000;">/var/run/cloudera-scm-agent/process/****-zookeeper-server/zookeeper.keytab</span></p> <p>&nbsp;</p> <h2>2.2 修改server.properties</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>//修改这一句</p> <p>&nbsp;listeners=SASL_PLAINTEXT://host.name:port</p> <p>//新增以下</p> <p>authorizer.class.name = kafka.security.auth.SimpleAclAuthorizer</p> <p>security.inter.broker.protocol=SASL_PLAINTEXT</p> <p>sasl.mechanism.inter.broker.protocol=GSSAPI</p> <p>sasl.enabled.mechanisms=GSSAPI</p> <p>sasl.kerberos.service.name=kafka</p> <p>super.users=User:kafka</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <p>&nbsp;</p> <h2>2.3 新建kafka_server.jaass</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>KafkaServer {<!-- --></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com.sun.security.auth.module.Krb5LoginModule required</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; useKeyTab=true</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; storeKey=true</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; serviceName="kafka"</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keyTab="/etc/keytab/kafka_122.keytab" //替换为自己的keytab所在位置</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; principal="kafka/{hostname}@{REALM}";//替换为自己的keytab所对应principle</p> <p>&nbsp; };</p> <p>&nbsp;</p> <p>&nbsp; // Zookeeper client authentication，因为卡夫卡使用过程中会和zookeeper进行交互</p> <p>Client {<!-- --></p> <p>&nbsp; com.sun.security.auth.module.Krb5LoginModule required</p> <p>&nbsp; useKeyTab=true</p> <p>&nbsp; storeKey=true</p> <p>&nbsp; serviceName="zookeeper"</p> <p>&nbsp;&nbsp;keyTab="/etc/keytab/kafka_122.keytab" //替换为自己的keytab所在位置</p> <p>&nbsp; principal="kafka/{hostname}@{REALM}";//替换为自己的keytab所对应principle</p> <p>&nbsp; };</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h2>2.4 修改启动脚本</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>export KAFKA_OPTS="-Djava.security.krb5.conf=/etc/krb5.conf -Djava.security.auth.login.config=/root/kafka/config/kafka_server.jaas"</p> <p>//刚才的kafka_server.jaas位置</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h2>2.5重启broker</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>bin/kafka-server-stop.sh</p> <p>bin/kafka-server-start.sh</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h2>2.6 客户端启用kerberos</h2> <p>在broker启用kerberos之后，如果我们后续需要在命令行界面进行操作，及consumer与producer操作，我们需要在这些客户端也配置上kerberos</p> <p>&nbsp;</p> <h3>2.6.1新增kafka_client.jaas</h3> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>KafkaClient {<!-- --></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com.sun.security.auth.module.Krb5LoginModule required</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; useKeyTab=true</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; storeKey=true</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keyTab="/etc/keytab/kafka_122.keytab"</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; serviceName="kafka"</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; principal="kafka/{hostname}@{REALM}";</p> <p>&nbsp; };</p> <p>&nbsp;</p> <p>&nbsp; // Zookeeper client authentication</p> <p>Client {<!-- --></p> <p>&nbsp; com.sun.security.auth.module.Krb5LoginModule required</p> <p>&nbsp; useKeyTab=true</p> <p>&nbsp; storeKey=true</p> <p>&nbsp; serviceName="zookeeper"</p> <p>&nbsp; keyTab="/etc/keytab/kafka_122.keytab"</p> <p>&nbsp; principal="kafka/{hostname}@{REALM}";</p> <p>&nbsp; };</p> <p>&nbsp;</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h3>2.6.2配置生效</h3> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>当前会话生效：</p> <p>&nbsp;&nbsp; export KAFKA_OPTS="-Djava.security.krb5.conf=/etc/krb5.conf -Djava.security.auth.login.config=/opt/kafka/config/kafka_client.jaas"</p> </td> </tr> <tr> <td> <p>配置到环境变量中</p> <p>&nbsp;&nbsp; vim /etc/profile</p> <p>增加</p> <p>&nbsp;&nbsp; export KAFKA_OPTS="-Djava.security.krb5.conf=/etc/krb5.conf -Djava.security.auth.login.config=/opt/kafka/config/kafka_client.jaas"</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h3>2.6.3若有用到consumer或者producer，在consumer.properties或producer.properties中增加</h3> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>&nbsp;security.protocol=SASL_PLAINTEXT</p> <p>&nbsp;sasl.mechanism=GSSAPI</p> <p>&nbsp;sasl.kerberos.service.name=kafka</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <p>&nbsp;</p> </h1> <p>Kafka认证管理CLI（和其他的CLI脚本）可以在bin目录中找到。CLI脚本名是kafka-acls.sh。启用之前，需要在server.properties里添加这句:</p> <p>&nbsp;</p> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>allow.everyone.if.no.acl.found=false</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <p>以下列出了所有脚本支持的选项：</p> <table border="0" cellpadding="0" align="left" width="0"> <tbody> <tr> <td> <p align="left"><strong>选项</strong></p> </td> <td> <p align="left"><strong>描述</strong></p> </td> <td> <p align="left"><strong>默认</strong></p> </td> <td> <p align="left"><strong>类型选择</strong></p> </td> </tr> <tr> <td> <p align="left">--add</p> </td> <td> <p align="left">添加一个acl</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Action</p> </td> </tr> <tr> <td> <p align="left">--remove</p> </td> <td> <p align="left">移除一个acl</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Action</p> </td> </tr> <tr> <td> <p align="left">--list</p> </td> <td> <p align="left">列出acl</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Action</p> </td> </tr> <tr> <td> <p align="left">--authorizer</p> </td> <td> <p align="left">authorizer的完全限定类名</p> </td> <td> <p align="left">kafka.security.auth.SimpleAclAuthorizer</p> </td> <td> <p align="left">Configuration</p> </td> </tr> <tr> <td> <p align="left">--authorizer-properties</p> </td> <td> <p align="left">key=val，传给authorizer进行初始化，例如：zookeeper.connect=localhost:2181</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Configuration</p> </td> </tr> <tr> <td> <p align="left">--cluster</p> </td> <td> <p align="left">指定集群作为资源。</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Resource</p> </td> </tr> <tr> <td> <p align="left">--topic [topic-name]</p> </td> <td> <p align="left">指定topic作为资源。</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Resource</p> </td> </tr> <tr> <td> <p align="left">--group [group-name]</p> </td> <td> <p align="left">指定 consumer-group 作为资源。</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Resource</p> </td> </tr> <tr> <td> <p align="left">-allow-principal</p> </td> <td> <p align="left">添加到允许访问的ACL中，Principal是PrincipalType:name格式。<br /> 你可以指定多个。</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Principal</p> </td> </tr> <tr> <td> <p align="left">--deny-principal</p> </td> <td> <p align="left">添加到拒绝访问的ACL中，Principal是PrincipalType:name格式。<br /> 你可以指定多个。</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Principal</p> </td> </tr> <tr> <td> <p align="left">--allow-host</p> </td> <td> <p align="left">--allow-principal中的principal的IP地址允许访问。</p> </td> <td> <p align="left">如果--allow-principal指定的默认值是*，则意味着指定“所有主机”</p> </td> <td> <p align="left">Host</p> </td> </tr> <tr> <td> <p align="left">--deny-host</p> </td> <td> <p align="left">允许或拒绝的操作。<br /> 有效值为：读，写，创建，删除，更改，描述，ClusterAction，全部</p> </td> <td> <p align="left">ALL</p> </td> <td> <p align="left">Operation</p> </td> </tr> <tr> <td> <p align="left">--operation</p> </td> <td> <p align="left">--deny-principal中的principals的IP地址拒绝访问。</p> </td> <td> <p align="left">如果 --deny-principal指定的默认值是 * 则意味着指定 "所有主机"</p> </td> <td> <p align="left">Host</p> </td> </tr> <tr> <td> <p align="left">--producer</p> </td> <td> <p align="left">为producer角色添加/删除acl。生成acl，允许在topic上WRITE, DESCRIBE和CREATE集群。</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Convenience</p> </td> </tr> <tr> <td> <p align="left">--consumer</p> </td> <td> <p align="left">为consumer role添加/删除acl，生成acl，允许在topic上READ, DESCRIBE 和 consumer-group上READ。</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Convenience</p> </td> </tr> <tr> <td> <p align="left">--force</p> </td> <td> <p align="left">假设所有操作都是yes，规避提示</p> </td> <td> <p align="left">&nbsp;</p> </td> <td> <p align="left">Convenience</p> </td> </tr> </tbody> </table> <p>常用命令举例：因为kafka的acl信息是存在zookeeper上的，所以需要提供zookeeper.connect参数，并且acl的存在与否与资源的存在与否无关。</p> <p>最后的资源可以是topic，也可是cluster，也可以是consumer-group</p> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>给Bob和Alice从198.168.159.0（1）对test读写的权限</p> </td> <td> <p>bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:Bob --allow-principal User:Alice --allow-host 198.168.159.0 --allow-host 198.168.159.1 --operation Read --operation Write --topic test</p> </td> </tr> <tr> <td> <p>只拒绝BadBob从198.168.159.3对test的读权限</p> </td> <td> <p>bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:* --allow-host * --deny-principal User:BadBob --deny-host 198.168.159.3 --operation Read --topic test</p> </td> </tr> <tr> <td> <p>列出test的所有权限</p> </td> <td> <p>bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --list --topic test</p> </td> </tr> <tr> <td> <p>删除权限</p> </td> <td> <p>bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --remove --allow-principal User:* --allow-host * --deny-principal User:BadBob --deny-host 198.168.159.3 --operation Read --topic test</p> </td> </tr> <tr> <td> <p>给生产者Bob对test的生产权限</p> </td> <td> <p>bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:Bob --producer --topic test</p> </td> </tr> <tr> <td> <p>给消费者Bob对test的消费权限</p> </td> <td> <p>bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:Bob --consumer --topic test --group Group-1</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <p>&nbsp;</p> </h1> <h2>4.1 修改kerberos配置</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>添加互信principle</p> </td> <td> <p>kadmin.local下操作</p> <p>&nbsp; &nbsp;addprinc &nbsp;krbtgt/{REALMA}@{REALMB}</p> <p>&nbsp;&nbsp; addprinc&nbsp; krbtgt/{REALMB}@{REALMA}</p> </td> </tr> <tr> <td> <p>修改krb5.conf</p> </td> <td> <p>[realms]//realms 里配上两个域的信息</p> <p>&nbsp; HADOOP.SPADE.COM = {<!-- --></p> <p>&nbsp; kdc = hb21-bd-cm-130-61:88</p> <p>&nbsp; admin_server = hb21-bd-cm-130-61:749</p> <p>&nbsp; }</p> <p>&nbsp; HADOOP.TEST.COM = {<!-- --></p> <p>&nbsp; kdc = tk-dba-hadoop-152:88</p> <p>&nbsp; admin_server = tk-dba-hadoop-152:749</p> <p>}</p> <p>[domain_realm] //domain_realm 配上域名和主机名的映射，有多少机器就要配多少</p> <p>tk-dba-hadoop-154 = HADOOP.TEST.COM</p> <p>hb21-dba-kfk-130-120 = HADOOP.SPADE.COM</p> <p>&nbsp;</p> <p>[capaths] //capaths 配上互信的域的映射</p> <p>HADOOP.SAPDE.COM ={<!-- --></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HADOOP.TEST.COM = .</p> <p>}</p> <p>HADOOP.TEST.COM={<!-- --></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HADOOP.SPADE.COM = .</p> <p>}</p> <p>&nbsp;</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h2>4.2 修改broker配置</h2> <p>添加sasl.kerberos.principal.to.local.rules属性</p> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>sasl.kerberos.principal.to.local.rules=RULE:[1:$1@$0](.*@\HADOOP.TEST.COM$)s/@\HADOOP.TEST.COM$//,RULE:[2:$1@$0](.*@\HADOOP.TEST.COM$)s/@\HADOOP.TEST.COM$//,RULE:[1:$1@$0](.*@\HADOOP.SPADE.COM$)s/@\HADOOP.SPADE.COM$//,RULE:[2:$1@$0](.*@\HADOOP.SPADE.COM$)s/@\HADOOP.SPADE.COM$//,DEFAULT</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h2>4.3 验证互信是否成功</h2> <p>从域B中复制出keytab到域A的机器中，然后在A中使用该keytab，配置jaas文件，导入环境变量中。用该keytab操作集群A或者集群B中的topic，能正常写入数据即为成功。</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> </h1> <p>生产环境启用kerberos之后，为了给业务向的consumer和producer一个平滑的接入认证系统的缓冲时间，这段时间我们可以给kafka启用两个监听端口，一个是需要kerberos认证的端口，一个不需要认证的端口。让他们共同存在，同时服务。</p> <h2>5.1 增加监听端口</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>修改server.properties</p> </td> <td> <p>listeners=SASL_PLAINTEXT://10.21.130.120:9092,PLAINTEXT://10.21.130.120:9093</p> <p>allow.everyone.if.no.acl.found=false</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <p>&nbsp;</p> <h2>5.2 添加ANONYMOUS用户的访问权限</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>bin/kafka-acls.sh --add --authorizer-properties zookeeper.connect={host:port/childpath} --allow-principal User:ANONYMOUS --allow-host *&nbsp; --operation All --topic {topicname}</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> <h2>5.3 测试不同认证方式共存成功与否</h2> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>删除jaas环境变量</p> </td> <td> <p>unset {变量名}</p> </td> </tr> <tr> <td> <p>producer测试</p> </td> <td> <p>bin/kafka-console-producer.sh --broker-list {host}:9093 --topic{topicname}</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> </h1> <p>kafka的bin目录下的zookeeper-security-migration.sh，可以将kafka的权限，遍历赋给zookeeper中每个子节点，然后分别设置acl，因为zookeeper的acl是仅对当前节点生效，对其下节点不生效的，单独赋权限很麻烦。zookeeper-security-migration.sh解决了这个问题。</p> <table border="1" cellspacing="0" cellpadding="0" width="0"> <tbody> <tr> <td> <p>修改server.properties,增加</p> <p>&nbsp;&nbsp; zookeeper.set.acl=true</p> </td> </tr> <tr> <td> <p>重启kafka集群（批量重启或滚动重启）</p> </td> </tr> <tr> <td> <p>启动zookeeper-security-migration.sh脚本,secure设置同步，unsecure取消同步</p> <p>&nbsp;&nbsp; bin/zookeeper-security-migration --zookeeper.acl=secure --zookeeper.connect={host}:{port}/{path}</p> </td> </tr> </tbody> </table> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-48350.htm">宠物领养网站的设计与实现方案有哪些内容（宠物领养网站的设计与实现方案有哪些内容和要求）</a></p>
+                                        <p>下一个：<a href="/news/article-48930.htm">Top 20 Docker 面试题（附答案）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-38035.htm" title="广州的宠物领养机构排名榜（广州领养宠物中心）">广州的宠物领养机构排名榜（广州领养宠物中心）</a></li>
+                        <li class="py-2"><a href="/news/article-37573.htm" title="小猫养多久才认主人?怎样不让猫得猫藓呢（小猫养多久才认家）">小猫养多久才认主人?怎样不让猫得猫藓呢（小猫养多久才认家）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-node-subscribe-links.htm" title="1月21日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接">1月21日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-48929.htm" title="kafka集群安全化之启用kerberos与acl">kafka集群安全化之启用kerberos与acl</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-clash-subscribe.htm" title="11月9日|最高速度20.1M/S，2024最新ClashVerge免费节点高速订阅链接">11月9日|最高速度20.1M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34191.htm" title="苹果怎么切方便吃又好看(苹果怎么切最好吃)">苹果怎么切方便吃又好看(苹果怎么切最好吃)</a></li>
+                        <li class="py-2"><a href="/news/article-43000.htm" title="动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）">动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-free-high-speed-nodes.htm" title="1月22日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接">1月22日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-shadowrocket-node.htm" title="12月13日|最高速度19M/S，2024最新ClashVerge免费节点高速订阅链接">12月13日|最高速度19M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35914.htm" title="厦门领养宠物猫中心地址 厦门领养宠物猫中心地址在哪里">厦门领养宠物猫中心地址 厦门领养宠物猫中心地址在哪里</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
