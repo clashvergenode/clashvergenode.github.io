@@ -8,6 +8,17 @@
     <title>一个 Java8 的线程池 BUG 引发线上偶发 Bug 重现分析</title>
         <meta name="description" content="你知道的越多，不知道的就越多，业余的像一棵小草！ 你来，我们一起精进！你不来，我和你的竞争对手一起精进！ 编辑：业余草 segmentfault.com/a/1190000021109130 推荐：h" />
         <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-20632.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="一个 Java8 的线程池 BUG 引发线上偶发 Bug 重现分析" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/c82532c5b72d1ab22627277b2f49c97e.webp" />
+        <meta property="og:release_date" content="2024-12-03T00:15:03" />
+    <meta property="og:updated_time" content="2024-12-03T00:15:03" />
+        <meta property="og:description" content="你知道的越多，不知道的就越多，业余的像一棵小草！ 你来，我们一起精进！你不来，我和你的竞争对手一起精进！ 编辑：业余草 segmentfault.com/a/1190000021109130 推荐：h" />
+        
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Place favicon.ico in the root directory -->
     <!-- ========================= CSS here ========================= -->
@@ -16,6 +27,22 @@
     <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
     <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
     <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="一个 Java8 的线程池 BUG 引发线上偶发 Bug 重现分析">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
 <script>
@@ -119,7 +146,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
-                        <img href="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -145,16 +172,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-3-free-ssr-node.htm" title="10月3日|最高速度19.5M/S，2024最新ClashVerge免费节点高速订阅链接">10月3日|最高速度19.5M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-18-clash-v2ray-ss-ssr.htm" title="7月18日|最高速度18.8M/S，2024最新ClashVerge免费节点高速订阅链接">7月18日|最高速度18.8M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-v2ray.htm" title="11月6日|最高速度20.3M/S，2024最新ClashVerge免费节点高速订阅链接">11月6日|最高速度20.3M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-19-free-shadowrocket-node.htm" title="9月19日|最高速度20M/S，2024最新ClashVerge免费节点高速订阅链接">9月19日|最高速度20M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-4-free-clash-subscribe.htm" title="9月4日|最高速度18.8M/S，2024最新ClashVerge免费节点高速订阅链接">9月4日|最高速度18.8M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-node-share.htm" title="11月27日|最高速度20.9M/S，2024最新ClashVerge免费节点高速订阅链接">11月27日|最高速度20.9M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日|最高速度22.5M/S，2024最新ClashVerge免费节点高速订阅链接">11月29日|最高速度22.5M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-27-node-share.htm" title="12月27日|最高速度22.7M/S，2024最新ClashVerge免费节点高速订阅链接">12月27日|最高速度22.7M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-15-free-ssr-subscribe.htm" title="6月15日|最高速度18M/S，2024最新ClashVerge免费节点高速订阅链接">6月15日|最高速度18M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-11-node-share-links.htm" title="12月11日|最高速度19.8M/S，2024最新ClashVerge免费节点高速订阅链接">12月11日|最高速度19.8M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-40021.htm" title="python连接MySQL数据库并读取数据库中的数据表存入list中">python连接MySQL数据库并读取数据库中的数据表存入list中</a></li>
+                        <li class="py-2"><a href="/news/article-20174.htm" title="宠物店一个月能卖多少狗粮啊视频（宠物店一个月能卖多少只狗）">宠物店一个月能卖多少狗粮啊视频（宠物店一个月能卖多少只狗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-clash-node.htm" title="12月26日|最高速度19.7M/S，2024最新ClashVerge免费节点高速订阅链接">12月26日|最高速度19.7M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-shadowrocket-node.htm" title="12月22日|最高速度22.2M/S，2024最新ClashVerge免费节点高速订阅链接">12月22日|最高速度22.2M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19254.htm" title="动物疫苗是什么颜色（动物疫苗是什么颜色的图片）">动物疫苗是什么颜色（动物疫苗是什么颜色的图片）</a></li>
+                        <li class="py-2"><a href="/news/article-45480.htm" title="SpringCloud 服务调用监控 Hystrix Dashboard、Turbine">SpringCloud 服务调用监控 Hystrix Dashboard、Turbine</a></li>
+                        <li class="py-2"><a href="/news/article-30845.htm" title="河南兽药品牌排名（河南最好兽药厂家直销）">河南兽药品牌排名（河南最好兽药厂家直销）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-node-share-links.htm" title="12月5日|最高速度21.9M/S，2024最新ClashVerge免费节点高速订阅链接">12月5日|最高速度21.9M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-45988.htm" title="动物防疫疫苗空瓶如何销毁处理措施（动物疫苗未冷藏几小时失效）">动物防疫疫苗空瓶如何销毁处理措施（动物疫苗未冷藏几小时失效）</a></li>
+                        <li class="py-2"><a href="/news/article-38035.htm" title="广州的宠物领养机构排名榜（广州领养宠物中心）">广州的宠物领养机构排名榜（广州领养宠物中心）</a></li>
                     </ul>
     </div>
 </div>
@@ -166,31 +193,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
