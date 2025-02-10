@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-54198.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>利用Nginx实现URL重定向的简单方法_nginx_</title>
+        <meta name="description" content="目录  1. 概述 2. 使用 Nginx 实现 URL 的重定向  2.1 使用场景 2.2 单纯的重定向 2.3 依据原 URL 重定向  补充：Nginx根据url参数重定向  1.判断url路" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-54198.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="利用Nginx实现URL重定向的简单方法_nginx_" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/9fcb76b5179b6053e89910347d1b7c43.webp" />
+        <meta property="og:release_date" content="2025-02-10T07:38:08" />
+    <meta property="og:updated_time" content="2025-02-10T07:38:08" />
+        <meta property="og:description" content="目录  1. 概述 2. 使用 Nginx 实现 URL 的重定向  2.1 使用场景 2.2 单纯的重定向 2.3 依据原 URL 重定向  补充：Nginx根据url参数重定向  1.判断url路" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="利用Nginx实现URL重定向的简单方法_nginx_">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            利用Nginx实现URL重定向的简单方法_nginx_                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">1. 概述</a></li> <li><a href="#_label1" rel="nofollow">2. 使用 Nginx 实现 URL 的重定向</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">2.1 使用场景</a></li> <li><a href="#_lab2_1_1" rel="nofollow">2.2 单纯的重定向</a></li> <li><a href="#_lab2_1_2" rel="nofollow">2.3 依据原 URL 重定向</a></li> </ul> <li><a href="#_label2" rel="nofollow">补充：Nginx根据url参数重定向</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_2_3" rel="nofollow">1.判断url路径</a></li> <li><a href="#_lab2_2_4" rel="nofollow">2. 判断url参数</a></li> </ul> <li><a href="#_label3" rel="nofollow">总结</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>1. 概述</h2> <p>老话说的好：取乎上，得其中；取乎中，得其下。因此我们不妨把目标定的高一些，去努力，才能得到更好回报。</p> <p>言归正传，今天我们来聊聊 使用 Nginx 实现 URL 的重定向。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>2. 使用 Nginx 实现 URL 的重定向</h2> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>2.1 使用场景</h3> <p>我们日常分享一个网站地址时，常常会有这样的效果，同样一个网址，在电脑的浏览器打开，是一种效果，而在手机的浏览器打开，就会展现出另一种更适合手机显示的效果。</p> <p>通常要达到这样的效果，有两种方式实现：</p> <p>一、使用自适应的 H5 页面实现，根据窗口宽度的大小，自动调整页面的布局。</p> <p>二、使用Nginx，依据终端的不同，跳转到不同的页面，电脑打开，跳转到 PC端 使用的网页，手机打开，跳转到 手机端 使用的网页。</p> <p>今天我们介绍一下第二种方式，是如何实现的。</p> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>2.2 单纯的重定向</h3> <p>有些 URL 的重定向，新 URL 不需要继承原 URL 的参数，例如 网站首页，这种情况，在 Nginx 配置文件的 location 中使用 return 302 的方式进行跳转即可。</p> <div class="ay1code"> <pre class="brush:bash;">location / {          # 判断是否是移动端          if ( $http_user_agent ~ "(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT-)|(SonyEricsson)|(NEC-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC-)|(SED-)|(EMOL-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)|(Wget)|(Java)|(curl)|(Opera)" )          {              return 302 https://www.zhuifengren.com/h5/index.html;          }             proxy_pass http://myUpstream;   }  </pre> </div> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>2.3 依据原 URL 重定向</h3> <p>另一种情况就是 新 URL 需要继承原 URL 的参数，这种情况就需要使用  rewrite 对 URL 进行改写。</p> <div class="ay1code"> <pre class="brush:bash;">location / {          # 判断是否是移动端          if ( $http_user_agent ~ "(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT-)|(SonyEricsson)|(NEC-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC-)|(SED-)|(EMOL-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)|(Wget)|(Java)|(curl)|(Opera)" )          {              rewrite (\w+-\w+)|(\?.*)$ https://www.zhuifengren.com/h5-$1-0.html$2 redirect;                  }                 proxy_pass http://myUpstream;  }  </pre> </div> <p>rewrite 的语法是： rewrite  正则表达式  改写后的URL  redirect;</p> <p>其中 redirect 是 302 临时重定向的意思，也可以使用 permanent 关键字，代表 301 永久重定向。</p> <p>使用 rewrite 对 URL 进行改写，需要用到 正则表达式 的知识，改写后 URL 中的 $1、$2 代表正则表达式中匹配的第一个字符串和第二个字符串，这里大家可以去了解一下正则表达式，就不细说了。</p> <p>例子中的正则表达式 (\w+-\w+)|(\?.*)$，可以将原 URL：</p> <blockquote> <p>https://www.zhuifengren.com/1001-1223.jsp?v=123456</p> </blockquote> <p>改写为</p> <blockquote> <p>https://www.zhuifengren.com/h5-1001-1223-0.html?v=123456</p> </blockquote> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>补充：Nginx根据url参数重定向</h2> <p class="maodian"><a name="_lab2_2_3" rel="nofollow"></a></p> <h3>1.判断url路径</h3> <div class="ay1code"> <pre class="brush:xhtml;">location / {      if ($args ~* "/product-list?param1=val1&amp;amp;param2=val2") {          rewrite ^ http://www.mysite.com/product-list/$arg_param1/$arg_param2? last;      }  }  </pre> </div> <p class="maodian"><a name="_lab2_2_4" rel="nofollow"></a></p> <h3>2. 判断url参数</h3> <div class="ay1code"> <pre class="brush:bash;">if ($arg_path = 'abc'){  	proxy_pass http://127.0.0.1/abc/$arg_path;  }  </pre> </div> <p>特别注意if is evil,nginx不提供多if判断，没有or这样的判断，所以只能用下文这种方式。</p> <div class="ay1code"> <pre class="brush:bash;">location /api/ {          if ($arg_token = '') {          	proxy_pass http://127.0.0.1/abc          }          if ($http_token = '') {               proxy_pass http://127.0.0.2/abc          }          if ($token = paraheader) {          	 proxy_pass http://127.0.0.3/abc          }          proxy_pass http://127.0.0.1:8080/app/;          proxy_redirect off;      }</pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>总结</h2> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-53663.htm">初探webpack之编写loader_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-54199.htm">宠物店生意从开业不太好怎么办（宠物店刚开业怎么做活动）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-53663.htm" title="初探webpack之编写loader_在线工具">初探webpack之编写loader_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-ssr-subscribe.htm" title="12月19日|最高速度19.1M/S，2024最新ClashVerge免费节点高速订阅链接">12月19日|最高速度19.1M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27101.htm" title="活体猫托运多少钱（活猫托运价格查询）">活体猫托运多少钱（活猫托运价格查询）</a></li>
+                        <li class="py-2"><a href="/news/article-26636.htm" title="动物疫苗属于生物农业吗为什么不能用生物制品（动物疫苗是什么单位）">动物疫苗属于生物农业吗为什么不能用生物制品（动物疫苗是什么单位）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-node-subscribe.htm" title="1月12日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接">1月12日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-clash.htm" title="1月5日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接">1月5日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28495.htm" title="中国十大宠物粮上市公司排名前十名有哪些（中国宠物粮生产企业）">中国十大宠物粮上市公司排名前十名有哪些（中国宠物粮生产企业）</a></li>
+                        <li class="py-2"><a href="/news/article-28954.htm" title="动物疫苗研究现状论文（动物疫苗市场分析）">动物疫苗研究现状论文（动物疫苗市场分析）</a></li>
+                        <li class="py-2"><a href="/news/article-50980.htm" title="SpringBoot整合Shiro和Redis的示例代码_java">SpringBoot整合Shiro和Redis的示例代码_java</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-shadowrocket-node.htm" title="12月15日|最高速度18.2M/S，2024最新ClashVerge免费节点高速订阅链接">12月15日|最高速度18.2M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
