@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-56407.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>C++语言表达式求值</title>
+        <meta name="description" content="#include &lt;stack&gt;            //引入了C++标准模板库的stack #include &lt;stdio.h&gt; #include &lt;stdlib.h" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-56407.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="C++语言表达式求值" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/eb87571571fd19ede85aa5cd788689a0.webp" />
+        <meta property="og:release_date" content="2025-02-14T10:02:13" />
+    <meta property="og:updated_time" content="2025-02-14T10:02:13" />
+        <meta property="og:description" content="#include &lt;stack&gt;            //引入了C++标准模板库的stack #include &lt;stdio.h&gt; #include &lt;stdlib.h" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C++语言表达式求值">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            C++语言表达式求值                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <pre><code>#include &lt;stack&gt;            //引入了C++标准模板库的stack #include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;iostream&gt; using namespace std; void Match() { 	char test[100];    //定义了一个char类型的test数组装“{<!-- -->{([])}}”这样的字符串，用以测试 	cin &gt;&gt; test;       //输入字符串 	stack&lt;char&gt;S;      //定义一个栈,类型是char类型 	bool ismatch = true;    //定义一个bool类型的变量，先赋值为true,如果在循环体中发现是不匹配的,就把值变成false 	for (int i = 0; test[i] != '\0'; i++) {             //for循环对数组每个元素都进行测试，如果是'[','{','('就放入栈         //如果是']','}',')'，就取出栈顶元素，与当前元素进行匹配，一旦发现不匹配，ismatch就变成                         //false 		switch (test[i]) 		{ 		case '[': 		case '{': 		case '(': { 			S.push(test[i]); 			break; 		} 		case ']': { 			char temp = S.top(); 			S.pop();            //取栈顶元素，并弹栈 			if (temp != '[') { 				ismatch = false; 			} 			break; 		} 		case '}': { 			char temp = S.top(); 			S.pop();            //取栈顶元素，并弹栈 			if (temp != '{') { 				ismatch = false; 			} 			break; 		} 		case ')': { 			char temp = S.top(); 			S.pop();            //取栈顶元素，并弹栈 			if (temp != '(') { 				ismatch = false; 			} 			break; 		} 		default: 			break; 		} 		if (ismatch == false) {    //如果ismatch是false,就终止循环，并且打印不匹配 			printf("\n%s括号不匹配\n", test); 			break; 		} 	} 	if (ismatch == true) { 		printf("\n%s括号是匹配的\n", test); 	}  } int main() { 	//测试数据:{([({<!-- -->{([[[{<!-- -->{}}]]])}})])} 	Match(); }</code></pre> <p>第一次写文章</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55845.htm">实现领养宠物的功能（领养宠物条件是什么）</a></p>
+                                        <p>下一个：<a href="/news/article-56408.htm">宠物粮进货渠道在哪里啊（宠物粮食进货渠道）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-node-subscribe.htm" title="1月12日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接">1月12日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share-links.htm" title="11月29日|最高速度22.5M/S，2024最新ClashVerge免费节点高速订阅链接">11月29日|最高速度22.5M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-53663.htm" title="初探webpack之编写loader_在线工具">初探webpack之编写loader_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-56407.htm" title="C++语言表达式求值">C++语言表达式求值</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-clash-subscribe.htm" title="11月9日|最高速度20.1M/S，2024最新ClashVerge免费节点高速订阅链接">11月9日|最高速度20.1M/S，2024最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-56965.htm" title="SpringBoot(39) —— Shiro实现登陆拦截">SpringBoot(39) —— Shiro实现登陆拦截</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-clash-node-daily-updates.htm" title="2月12日|最高速度22M/S，2025最新ClashVerge免费节点高速订阅链接">2月12日|最高速度22M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23835.htm" title="Windows查看连接过的WiFi列表和密码">Windows查看连接过的WiFi列表和密码</a></li>
+                        <li class="py-2"><a href="/news/article-55844.htm" title="领养宠物协议有法律效力吗怎么写 领养宠物协议有法律效力吗怎么写的">领养宠物协议有法律效力吗怎么写 领养宠物协议有法律效力吗怎么写的</a></li>
+                        <li class="py-2"><a href="/news/article-43000.htm" title="动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）">动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
