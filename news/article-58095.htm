@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-58095.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>nginx进程管理</title>
+        <meta name="description" content="nginx进程管理==&gt; master + 多个worker进程 master进程：全局的初始化 和管理 worker进程 worker进程：主要业务逻辑，事件处理 通信：socketpair " />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-58095.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="nginx进程管理" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/5b9d8d27d0ec277888ae4930f1a7a4a6.webp" />
+        <meta property="og:release_date" content="2025-02-17T09:57:21" />
+    <meta property="og:updated_time" content="2025-02-17T09:57:21" />
+        <meta property="og:description" content="nginx进程管理==&gt; master + 多个worker进程 master进程：全局的初始化 和管理 worker进程 worker进程：主要业务逻辑，事件处理 通信：socketpair " />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="nginx进程管理">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            nginx进程管理                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <blockquote> <p>nginx进程管理==&gt; master + 多个worker进程<br /> master进程：全局的初始化 和管理 worker进程<br /> worker进程：主要业务逻辑，事件处理<br /> 通信：socketpair ==&gt; 每次fork完一个子进程后都把句柄传给前面已经存在的进程，以达到子进程间通信</p> </blockquote> <p><strong>nginx有多进程启动和单进程启动</strong><br /><img decoding="async" title="" alt="这里写图片描述" src="http://img.555519.xyz/uploads3/20220820/b24b00cf730ad74bb7612ea9cccad4fe.jpg"></p> <pre class="prettyprint"><code class="hljs objectivec">主要分析多进程启动： nginx中的fork在ngx_spawn_process函数中进行 ngx_pid_t ngx_spawn_process(ngx_cycle_t *cycle, ngx_spawn_proc_pt proc,<span class="hljs-keyword">void</span> *data,<span class="hljs-keyword">char</span> *name, ngx_int_t respawn) 第一个参数是全局的配置，第二个参数是子进程需要执行的函数，第三个参数是proc的参数，第四个类型<span class="hljs-comment">/*作用：： 1 有一个ngx_processes全局数组，包含了所有的存货的子进程，这里会fork出来的子进程放入到相应的位置。 并设置这个进程的相关属性。 2 创建socketpair，并设置相关属性。 3 在子进程中执行传递进来的函数。 */</span>  nginx进程结构：<span class="hljs-keyword">typedef</span><span class="hljs-keyword">struct</span>  {     ngx_pid_t            pid;<span class="hljs-comment">//进程的ID</span><span class="hljs-keyword">int</span>                  status;<span class="hljs-comment">//进程的退出状态</span>     ngx_socket_t         channel[<span class="hljs-number">2</span>];<span class="hljs-comment">//用于socketpair通信的一对socket句柄</span>     ngx_spawn_proc_pt    proc;<span class="hljs-comment">//进程的执行函数</span><span class="hljs-keyword">void</span>                 *data;<span class="hljs-comment">//proc的参数</span><span class="hljs-keyword">char</span>                 *name;<span class="hljs-comment">//进程的title标识</span><span class="hljs-keyword">unsigned</span>             respawn:<span class="hljs-number">1</span>;<span class="hljs-comment">//进程的状态:重新创建的</span><span class="hljs-keyword">unsigned</span>             just_spawn:<span class="hljs-number">1</span>;<span class="hljs-comment">//进程的状态: 第一次创建的</span><span class="hljs-keyword">unsigned</span>             detached:<span class="hljs-number">1</span>;<span class="hljs-comment">//进程的状态: 分离的，独立的</span><span class="hljs-keyword">unsigned</span>             exiting:<span class="hljs-number">1</span>;<span class="hljs-comment">//进程的状态: 正在退出的</span><span class="hljs-keyword">unsigned</span>             exited:<span class="hljs-number">1</span>;<span class="hljs-comment">//进程的状态: 已经退出的</span> } ngx_process_t;(src/os/unix/ngx_process<span class="hljs-variable">.h</span>)  master每创建一个worker都会把一个设置好的ngx_process_t结构变量放入ngx_processes中，新创建的进程存放在ngx_process_slot位置（遍历数组，查看是否空闲<span class="hljs-keyword">id</span> == -<span class="hljs-number">1</span>）   master进程向worker子进程发送命令是通过socketpair创建的一对socket实现的，之间传输的是ngx_channel_t结构变量：<span class="hljs-keyword">typedef</span><span class="hljs-keyword">struct</span>  {      ngx_uint_t  command;<span class="hljs-comment">//发送的命令</span>      ngx_pid_t   pid;<span class="hljs-comment">//发送方进程的进程id</span>      ngx_int_t   slot;<span class="hljs-comment">//发送方进程在进程表中偏移位置</span>      ngx_fd_t    fd;<span class="hljs-comment">//发送给对方的文件句柄</span> } ngx_channel_t;(src/os/unix/ngx_channel<span class="hljs-variable">.h</span>)</code></pre> <p><img decoding="async" title="" alt="这里写图片描述" src="http://img.555519.xyz/uploads3/20220820/d5483c8394045635c0eee346af114a31.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-57530.htm">动物疫苗监管部门电话号码查询（动物疫苗预防控制中心）</a></p>
+                                        <p>下一个：<a href="/news/article-58096.htm">宠物犬免费领养（宠物狗免费领养）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-46485.htm" title="HashMap中红黑树插入节点的调整过程分析_在线工具">HashMap中红黑树插入节点的调整过程分析_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-40524.htm" title="Java基础之浅谈继承、多态">Java基础之浅谈继承、多态</a></li>
+                        <li class="py-2"><a href="/news/article-56407.htm" title="C++语言表达式求值">C++语言表达式求值</a></li>
+                        <li class="py-2"><a href="/news/article-51526.htm" title="宠物医院心得体会800字（宠物医院工作内容心得）">宠物医院心得体会800字（宠物医院工作内容心得）</a></li>
+                        <li class="py-2"><a href="/news/article-47935.htm" title="SpringCloudConfig集成Bus消息总线实现动态刷新配置(全局广播和定点通知)">SpringCloudConfig集成Bus消息总线实现动态刷新配置(全局广播和定点通知)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-shadowrocket-node.htm" title="1月4日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接">1月4日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-free-clash.htm" title="2月11日|最高速度19.4M/S，2025最新ClashVerge免费节点高速订阅链接">2月11日|最高速度19.4M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28495.htm" title="中国十大宠物粮上市公司排名前十名有哪些（中国宠物粮生产企业）">中国十大宠物粮上市公司排名前十名有哪些（中国宠物粮生产企业）</a></li>
+                        <li class="py-2"><a href="/news/article-26635.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-27099.htm" title="linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址">linux设置自动获取ip命令,详解如何设置CentOS 7开机自动获取IP地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
