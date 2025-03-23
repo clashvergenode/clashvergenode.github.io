@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-78353.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>c# 一些警告的处理方法</title>
+        <meta name="description" content="在使用.Net 6开发程序时，发现多了很多新的警告类型。这里总结一下处理方法。 CS8618 在退出构造函数时，不可为 null 的 属性“Name”必须包含非 null 值 经常遇到的有CS8618" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-78353.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="c# 一些警告的处理方法" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/25bdb8407517bcda57ce30979a8e3cd9.webp" />
+        <meta property="og:release_date" content="2025-03-21T10:30:34" />
+    <meta property="og:updated_time" content="2025-03-21T10:30:34" />
+        <meta property="og:description" content="在使用.Net 6开发程序时，发现多了很多新的警告类型。这里总结一下处理方法。 CS8618 在退出构造函数时，不可为 null 的 属性“Name”必须包含非 null 值 经常遇到的有CS8618" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="c# 一些警告的处理方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            c# 一些警告的处理方法                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>在使用.Net 6开发程序时，发现多了很多新的警告类型。这里总结一下处理方法。</p> <h2 id="cs8618-在退出构造函数时不可为-null-的-属性name必须包含非-null-值">CS8618 在退出构造函数时，不可为 null 的 属性“Name”必须包含非 null 值</h2> <p>经常遇到的有CS8618警告：如果定义属性可能为空时，在编译时会报这个警告，比如下面的代码：</p> <pre><code>    public class Play     {         public string Name { get; set; }          public Play()         {          }</code></pre> <p>警告如下：<br /> CS8618	在退出构造函数时，不可为 null 的 属性“Name”必须包含非 null 值。请考虑将 属性 声明为可以为 null。<br /> 处理办法是将属性声明为可以为空：</p> <pre><code>    public class Play     {         public string? Name { get; set; }          public Play()         {          }     }</code></pre> <p>或者，给属性设置初始值：</p> <pre><code>    public class Play     {         public string Name { get; set; } = "";          public Play()         {          }     }</code></pre> <p>但遇到下面的情况，这两种办法就不能用了：</p> <pre><code> public class GameSocialDbContext : DbContext { 　　public DbSet&lt;GameMessage&gt; GameMessages { get; set; } 　　public DbSet&lt;Player&gt; Players { get; set; } 　　public GameSocialDbContext(DbContextOptions&lt;GameSocialDbContext&gt; options) : base(options) 　　{ 　　}  }</code></pre> <p>这种情况下，可以将属性设置default!来避免警告：</p> <pre><code>        public DbSet&lt;Game&gt; Games { get; set; } = default!;         public DbSet&lt;Player&gt; Players { get; set; } = default!;</code></pre> <h2 id="cs1998-此异步方法缺少await运算符">CS1998 此异步方法缺少await运算符</h2> <p>这种情况通常出现在重载或者实现某个异步方法时，没有可调用的异步函数。比如下面的方法：</p> <pre><code>        public async Task RemoveAsync(Player player)         {             Players.Remove(player);         }</code></pre> <p>这种情况下，可以在退出前增加 await Task.CompletedTask;来避免警告。<br /> 如果需要返回值，比如：</p> <pre><code>        public async Task&lt;List&lt;Player&gt;&gt; GetAllAsync()         {             return colTemp.AsQueryable&lt;Player&gt;().ToList();         }</code></pre> <p>这时，可以使用await Task.FromResult()作为返回值：</p> <pre><code>        public async Task&lt;List&lt;Player&gt;&gt; GetAllAsync()         {             return await Task.FromResult(colTemp.AsQueryable&lt;Player&gt;().ToList());         }</code></pre> <h2 id="cs8602-解引用可能出现空引用">CS8602 解引用可能出现空引用</h2> <p>如果采用as进行转换，可能出现这个警告：</p> <pre><code> await (handler as IEventHandler).HandleEvent(data);</code></pre> <p>可以改为强制转换：</p> <pre><code> await ((IEventHandler)handler).HandleEvent(data);</code></pre> <p>也可以使用!操作符：</p> <pre><code> await (handler as IEventHandler)!.HandleEvent(data);</code></pre> <p>还可以在调用前判断是否为空，如果为空，抛出异常。</p> <h2 id="cs8603-可能返回null引用">CS8603 可能返回null引用</h2> <p>这种警告多出现在过滤时，比如：</p> <pre><code>        public async Task&lt;Player&gt; GetPlayerByNameAsync(string name)         {             return await gameDbContext.Players                 .Include(p =&gt; p.SentFriendRequests)                 .Include(p =&gt; p.ReceievedFriendRequests).FirstOrDefaultAsync(p =&gt; p.UserName == name);         }</code></pre> <p>由于FirstOrDefault可能返回空值，所以会出现警告。可以改为使用First：</p> <pre><code>        public async Task&lt;Player&gt; GetPlayerByNameAsync(string name)         {             return await gameDbContext.Players                 .Include(p =&gt; p.SentFriendRequests)                 .Include(p =&gt; p.ReceievedFriendRequests).FirstAsync(p =&gt; p.UserName == name);         }</code></pre> <p>或者允许返回值为空：</p> <pre><code>        public async Task&lt;Player?&gt; GetPlayerByNameAsync(string name)         {             return await gameDbContext.Players                 .Include(p =&gt; p.SentFriendRequests)                 .Include(p =&gt; p.ReceievedFriendRequests).FirstOrDefaultAsync(p =&gt; p.UserName == name);         }</code></pre> <p>最后需要说明的是，警告是为了提示程序可能的潜在问题，消除警告时，需要结合具体情况确定使用哪种方式，不要为了去掉警告忽略潜在的问题。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-77666.htm">动物疫苗注射注意事项有哪些要求和标准（动物疫苗注射注意事项有哪些要求和标准图片）</a></p>
+                                        <p>下一个：<a href="/news/article-78354.htm">动物打完疫苗需要注意什么吗视频（动物打完疫苗需要注意什么吗视频教程）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-43979.htm" title="济南在哪领养猫的地方（济南在哪可以领养猫）">济南在哪领养猫的地方（济南在哪可以领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-clash-node-daily-updates.htm" title="3月12日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接">3月12日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-shadowrocket-node.htm" title="3月16日|最高速度22.8M/S，2025最新ClashVerge免费节点高速订阅链接">3月16日|最高速度22.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-76980.htm" title="做宠物粮食（做宠物粮食需要什么手续）">做宠物粮食（做宠物粮食需要什么手续）</a></li>
+                        <li class="py-2"><a href="/news/article-39531.htm" title="动物疫苗需要冷藏吗多少度以上（动物疫苗在常温下能放多久）">动物疫苗需要冷藏吗多少度以上（动物疫苗在常温下能放多久）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-clash-node-daily-updates.htm" title="3月21日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接">3月21日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-69649.htm" title="拼多多网店怎么注册开店（拼多多网店怎么注册开店要交钱吗）">拼多多网店怎么注册开店（拼多多网店怎么注册开店要交钱吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-clash-windows.htm" title="2月5日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接">2月5日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-65790.htm" title="猫咪驱虫的多少钱（猫咪驱虫多少钱一针）">猫咪驱虫的多少钱（猫咪驱虫多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-46485.htm" title="HashMap中红黑树插入节点的调整过程分析_在线工具">HashMap中红黑树插入节点的调整过程分析_在线工具</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
