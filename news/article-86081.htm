@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-86081.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>MySQL的安装和配置(超详细图文教程)</title>
+        <meta name="description" content="1.打开下载的mysql安装文件双击解压缩，运行“mysql-5.5.40-win32.msi”。 2.选择安装类型，有“Typical（默认）”、“Complete（完全）”、“Custom（用户自" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-86081.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="MySQL的安装和配置(超详细图文教程)" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/6b14248a70752b988af5ba329d1acdb8.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:48:20" />
+    <meta property="og:updated_time" content="2025-04-01T09:48:20" />
+        <meta property="og:description" content="1.打开下载的mysql安装文件双击解压缩，运行“mysql-5.5.40-win32.msi”。 2.选择安装类型，有“Typical（默认）”、“Complete（完全）”、“Custom（用户自" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL的安装和配置(超详细图文教程)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            MySQL的安装和配置(超详细图文教程)                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>1.打开下载的mysql安装文件双击解压缩，运行“mysql-5.5.40-win32.msi”。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/4c44bac8d029516986da8dddfb36d0f0.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/355fba423a848f6660c8d69c311fd43c.jpg" alt="MySQL的安装和配置(超详细图文教程)"></p> <p>2.选择安装类型，有“Typical（默认）”、“Complete（完全）”、“Custom（用户自定义）”三个选项，选择“Custom”，按“next”键继续。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/5212044db093d2fa7a6a1e88651fafac.jpg" alt="MySQL的安装和配置(超详细图文教程)"></p> <p>3.点选“Browse”，手动指定安装目录。<img decoding="async" src="http://img.555519.xyz/uploads/20230210/9d1bb66ad616ee56604bab76088a6aac.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 4.填上安装目录，我的是“d:\Program Files (x86)\MySQL\MySQL Server 5.0”，按“OK”继续。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/2a8a394f24a8eeda048b13ac11777c07.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 5.确认一下先前的设置，如果有误，按“Back”返回重做。按“Install”开始安装。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/d369591f760d310f30efc90392b64ebb.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/59baf7c5f70c0fd7e0a5474b39ab415f.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/c73b645843b159715d87e7be11425992.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/30c287dfe41969241fb65a16b8f4e241.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/501cd4f0aff73cac33456b35000e75b2.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 6.正在安装中，请稍候，直到出现下面的界面, 则完成MYSQL的安装<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/026d2d5f44795abea3eab67b44892b18.jpg" alt="MySQL的安装和配置(超详细图文教程)"></p> </h1> <p>1.安装完成了，出现如下界面将进入mysql配置向导。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/42a0eeca24eb028c0becb2a76686d7ed.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 2.选择配置方式，“Detailed Configuration（手动精确配置）”、“Standard Configuration（标准配置）”，我们选择“Detailed Configuration”，方便熟悉配置过程。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/3ac202ec5a9e6db15bedbde67933354f.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 3.选择服务器类型，“Developer Machine（开发测试类，mysql占用很少资源）”、“Server Machine（服务器类型，mysql占用较多资源）”、“Dedicated MySQL Server Machine（专门的数据库服务器，mysql占用所有可用资源）”<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/54dcf3db4c77087d983e61824313594d.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 4.选择mysql数据库的大致用途，“Multifunctional Database（通用多功能型，好）”、“Transactional Database Only（服务器类型，专注于事务处理，一般）”、“Non-Transactional Database Only（非事务处理型，较简单，主要做一些监控、记数用，对MyISAM数据类型的支持仅限于non-transactional），按“Next”继续。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/fa839be388c1fd3dee5f2c6052fd091e.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/4d74427f6618ba9a3d1c8d3368166404.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 5.选择网站并发连接数，同时连接的数目，“Decision Support(DSS)/OLAP（20个左右）”、“Online Transaction Processing(OLTP)（500个左右）”、“Manual Setting（手动设置，自己输一个数）”<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/ff9e111198044f168357a56686c60034.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 6.是否启用TCP/IP连接，设定端口，如果不启用，就只能在自己的机器上访问mysql数据库了，在这个页面上，您还可以选择“启用标准模式”（Enable Strict Mode），这样MySQL就不会允许细小的语法错误。如果是新手，建议您取消标准模式以减少麻烦。但熟悉MySQL以后，尽量使用标准模式，因为它可以降低有害数据进入数据库的可能性。按“Next”继续<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/d4439de07e4362fb55162c3cd7d27441.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 7.就是对mysql默认数据库语言编码进行设置（重要），一般选UTF-8，按 “Next”继续<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/f77c7702853a3f05f0b89acef5b18a08.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 8.选择是否将mysql安装为windows服务，还可以指定Service Name（服务标识名称），是否将mysql的bin目录加入到Windows PATH（加入后，就可以直接使用bin下的文件，而不用指出目录名，比如连接，“mysql.exe -uusername -ppassword;”就可以了，不用指出mysql.exe的完整地址，很方便），我这里全部打上了勾，Service Name不变。按“Next”继续。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/011423cfb98caf4a479b61b482bb66e2.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 9.询问是否要修改默认root用户（超级管理）的密码。“Enable root access from remote machines（是否允许root用户在其它的机器上登陆，如果要安全，就不要勾上，如果要方便，就勾上它）”。最后“Create An Anonymous Account（新建一个匿名用户，匿名用户可以连接数据库，不能操作数据，包括查询）”，一般就不用勾了，设置完毕，按“Next”继续。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/617e87ff41f8063a4bb028f7dadcd49f.jpg" alt="MySQL的安装和配置(超详细图文教程)"><br /> 10.确认设置无误，按“Execute”使设置生效，即完成MYSQL的安装和配置。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/60757eb4a76160abb926dcde853308f2.jpg" alt="MySQL的安装和配置(超详细图文教程)"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230210/4a356d44544743e6670c1ac53f660466.jpg" alt="MySQL的安装和配置(超详细图文教程)"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85352.htm">宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解</a></p>
+                                        <p>下一个：<a href="/news/article-86082.htm">广东领养宠物群微信怎么加（广东动物领养中心）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-81774.htm" title="上海2020年青浦二中升学率多少（上海青浦二中高考多少人考上本科）">上海2020年青浦二中升学率多少（上海青浦二中高考多少人考上本科）</a></li>
+                        <li class="py-2"><a href="/news/article-74954.htm" title="山东联美实业集团有限公司 山东联美实业集团有限公司郑强">山东联美实业集团有限公司 山东联美实业集团有限公司郑强</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-ssr-subscribe.htm" title="3月5日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接">3月5日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-65790.htm" title="猫咪驱虫的多少钱（猫咪驱虫多少钱一针）">猫咪驱虫的多少钱（猫咪驱虫多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-70299.htm" title="穷人养什么猫最好养（适合穷人养的10种狗）">穷人养什么猫最好养（适合穷人养的10种狗）</a></li>
+                        <li class="py-2"><a href="/news/article-66445.htm" title="数据类产品设计和实现思路_在线工具">数据类产品设计和实现思路_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-72295.htm" title="宠物领养市场前景分析（宠物领养价格）">宠物领养市场前景分析（宠物领养价格）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-free-clash.htm" title="3月18日|最高速度18.5M/S，2025最新ClashVerge免费节点高速订阅链接">3月18日|最高速度18.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-node-subscribe-links.htm" title="3月15日|最高速度18.8M/S，2025最新ClashVerge免费节点高速订阅链接">3月15日|最高速度18.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-clash-node-daily-updates.htm" title="3月12日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接">3月12日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

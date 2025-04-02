@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-85351.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解</title>
+        <meta name="description" content="一、Spring和SpringMVC的父子容器关系 1.讲问题之前要先明白一个关系 一般来说，我们在整合Spring和SpringMVC这两个框架中，web.xml会这样写到：    &lt;!-- " />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-85351.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/eb87571571fd19ede85aa5cd788689a0.webp" />
+        <meta property="og:release_date" content="2025-03-31T08:41:09" />
+    <meta property="og:updated_time" content="2025-03-31T08:41:09" />
+        <meta property="og:description" content="一、Spring和SpringMVC的父子容器关系 1.讲问题之前要先明白一个关系 一般来说，我们在整合Spring和SpringMVC这两个框架中，web.xml会这样写到：    &lt;!-- " />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <h2 id="一spring和springmvc的父子容器关系"><a name="t1" rel="nofollow"></a>一、Spring和<a class="hl hl-1" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=SpringMVC&amp;spm=1001.2101.3001.7020"  target="_blank" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.7020&quot;,&quot;dest&quot;:&quot;https://so.csdn.net/so/search?q=SpringMVC&amp;spm=1001.2101.3001.7020&quot;}" data-tit="SpringMVC" data-pretit="springmvc" rel="nofollow">SpringMVC</a>的父子容器关系</h2> <p>1.讲问题之前要先明白一个关系</p> <p>一般来说，我们在整合Spring和SpringMVC这两个框架中，web.xml会这样写到：</p> <div class="cnblogs_code"> <pre>  &lt;!-- 加载spring容器 --&gt;   &lt;!-- 初始化加载application.xml的各种配置文件 --&gt;   &lt;context-param&gt;     &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;     &lt;param-value&gt;classpath:spring/application-*.xml&lt;/param-value&gt;   &lt;/context-param&gt;   &lt;listener&gt;     &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;   &lt;/listener&gt;    &lt;!-- 配置springmvc前端控制器 --&gt;   &lt;servlet&gt;     &lt;servlet-name&gt;taotao-manager&lt;/servlet-name&gt;     &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;     &lt;!--<span> contextConfigLocation不是必须的， 如果不配置contextConfigLocation，      springmvc的配置文件默认在：WEB-INF/servlet的name+"-servlet.xml" --&gt;     &lt;init-param&gt;         &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;         &lt;param-value&gt;classpath:spring/springmvc.xml&lt;/param-value&gt;     &lt;/init-param&gt;     &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;   &lt;/servlet&gt;</span></pre> </div> <p><strong>首先配置的是Spring容器的初始化加载的application文件，然后是SpringMVC的前端控制器（DispatchServlet），当配置完DispatchServlet后会在Spring容器中创建一个新的容器。其实这是两个容器，Spring作为父容器，SpringMVC作为子容器。</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6f7a00e0dd92ddf49582d5bbf7ca0b4b.jpg" alt="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解"></p> <p>平时我们在项目中注入关系是这样的顺序（结合图来说）：在Service中注入Dao（初始化自动注入，利用@Autowired），接着在Controller里注入Service（初始化自动注入，利用@Autowired），看图，这就意味这作为SpringMVC的子容器是可以访问父容器Spring对象的。</p> <p>么问大家一个问题。要是反过来呢，你把Controller注入到Service中能行么？<br />肯定是不行的啊！(如图，这也说明了父容器是不能调用子容器对象的)</p> <p>如果Dao,Serive,Controller要是都在Spring容器中，无疑上边的问题是肯定的，因为都是在一个bean里，一个容器中。</p> <p><strong>2.问题：为什么不能在Spring中的Service层配置全局扫描？</strong></p> <p>例如：一个项目中我总项目的名字叫com.shop，我们在配置applicationContext-service.xml中，包扫描代码如下：</p> <div class="cnblogs_code"> <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans"<span>     xmlns:context="http://www.springframework.org/schema/context"<span>      ...../ 此处省略&gt;      &lt;!-- 扫描包Service实现类 --&gt;     &lt;context:component-scan base-package="com.shop.service"&gt;&lt;/context:component-scan&gt; &lt;/beans&gt;</span></span></pre> </div> <p>上面所配置的是一个局部扫描，而不是全局扫描。接下来说原因：</p> <p>这里就和上面讲到的父子容器有关系，假设我们做了全局扫描那么代码如下：</p> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;">?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" ...../ 此处省略&gt;     &lt;!-- 扫描包Service实现类 --&gt; &lt;context:component-scan base-package="com.shop"&gt;&lt;/context:component-scan&gt; &lt;/beans&gt;</pre> </div> <p>此时的Spring容器中就会扫描到@Controller,@Service,@Reposity,@Component,此时的图如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/8c824aef20d95c34fa74ad8b2b0dd92c.jpg" alt="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解"></p> <p>结合图去看，相当于他们都会放到大的容器中，而这时的SpringMVC容器中没有对象，没有对象就没有Controller，所以加载处理器，适配器的时候就会找不到映射对象，映射关系，因此在页面上就会出现404的错误。</p> <p>3.如果不用Spring容器，直接把所有层放入SpringMVC容器中可不可以？</p> <p>　　当然可以，如果没有Spring容器，我们是可以把所有层放入SpringMVC的。单独使用这个容器是完全可以的，而且是轻量级的。</p> <p>4.那么为什么我们在项目中还要联合用到Spring容器和SpringMVC容器？</p> <p>　　答案是： Spring的扩展性，如果要是项目需要加入Struts等可以整合进来，便于扩展框架。如果要是为了快，为了方便开发，完全可以用SpringMVC框架。</p> <p>5.结论</p> <p>　　如果在项目中我们在Service层做全局包扫描，那么springmvc不能提供服务，因为springmvc子容器中没有controller对象。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-84645.htm">动物疫苗在哪里打的呢 动物疫苗在哪里打的呢图片</a></p>
+                                        <p>下一个：<a href="/news/article-85352.htm">宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-67728.htm" title="MySQL数据库中的Date,DateTime,TimeStamp和Time类型">MySQL数据库中的Date,DateTime,TimeStamp和Time类型</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-clash-node-daily-updates.htm" title="3月21日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接">3月21日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-86788.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/news/article-86081.htm" title="MySQL的安装和配置(超详细图文教程)">MySQL的安装和配置(超详细图文教程)</a></li>
+                        <li class="py-2"><a href="/news/article-78353.htm" title="c# 一些警告的处理方法">c# 一些警告的处理方法</a></li>
+                        <li class="py-2"><a href="/news/article-79725.htm" title="猫三联三针间隔多久打一次疫苗（猫三联三针多久打完）">猫三联三针间隔多久打一次疫苗（猫三联三针多久打完）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-node-share.htm" title="3月7日|最高速度22.7M/S，2025最新ClashVerge免费节点高速订阅链接">3月7日|最高速度22.7M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-clash-windows.htm" title="3月11日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接">3月11日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-27-free-shadowrocket-node.htm" title="3月27日|最高速度19.6M/S，2025最新ClashVerge免费节点高速订阅链接">3月27日|最高速度19.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-82516.htm" title="济南正规的宠物寄养（济南最好的宠物寄养）">济南正规的宠物寄养（济南最好的宠物寄养）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
