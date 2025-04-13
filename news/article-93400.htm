@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-93400.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？</title>
+        <meta name="description" content="在MySQL中，SERIAL和AUTO_INCREMENT均用于将序列定义为字段的默认值。但是它们在技术上彼此不同。 除BIT和DECIMAL之外，所有数字数据类型均支持AUTO_INCREMENT属" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-93400.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/7a391b72abc69ed0c191431e378ca946.webp" />
+        <meta property="og:release_date" content="2025-04-11T08:57:25" />
+    <meta property="og:updated_time" content="2025-04-11T08:57:25" />
+        <meta property="og:description" content="在MySQL中，SERIAL和AUTO_INCREMENT均用于将序列定义为字段的默认值。但是它们在技术上彼此不同。 除BIT和DECIMAL之外，所有数字数据类型均支持AUTO_INCREMENT属" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>在MySQL中，SERIAL和AUTO_INCREMENT均用于将序列定义为字段的默认值。但是它们在技术上彼此不同。</p> <p>除BIT和DECIMAL之外，所有数字数据类型均支持AUTO_INCREMENT属性。每个表只能有一个AUTO_INCREMENT字段，并且一个表中的AUTO_INCREMENT字段生成的序列不能在其他任何表中使用。</p> <p>此属性要求字段上存在UNIQUE索引，以确保序列不重复。默认情况下，序列从1开始，每次插入都以1递增。</p> <h2>示例</h2> <pre>mysql&gt;&nbsp;Create&nbsp;Table&nbsp;Student(Student_id&nbsp;INT&nbsp;PRIMARY&nbsp;KEY&nbsp;NOT&nbsp;NULL&nbsp;AUTO_INCREMENT,&nbsp;Name&nbsp;Varchar(20));</pre> <p>上面的查询声明了Student_id AUTO_INCREMENT。</p> <pre>mysql&gt;&nbsp;Insert&nbsp;Into&nbsp;Student(Name)&nbsp;values('RAM'),('SHYAM'); Records:&nbsp;2&nbsp;Duplicates:&nbsp;0&nbsp;Warnings:&nbsp;0  mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;Student; +------------+-------+ |&nbsp;Student_id&nbsp;|&nbsp;Name&nbsp;&nbsp;| +------------+-------+ |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;|&nbsp;RAM&nbsp;&nbsp;&nbsp;| |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;|&nbsp;SHYAM&nbsp;| +------------+-------+ 2&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)  mysql&gt;&nbsp;Show&nbsp;Create&nbsp;Table&nbsp;Student\G ***************************&nbsp;1.&nbsp;row&nbsp;*************************** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table:&nbsp;Student Create&nbsp;Table:&nbsp;CREATE&nbsp;TABLE&nbsp;`student`&nbsp;( &nbsp;&nbsp;&nbsp;`Student_id`&nbsp;int(11)&nbsp;NOT&nbsp;NULL&nbsp;AUTO_INCREMENT, &nbsp;&nbsp;&nbsp;`Name`&nbsp;varchar(20)&nbsp;DEFAULT&nbsp;NULL, &nbsp;&nbsp;&nbsp;PRIMARY&nbsp;KEY&nbsp;(`Student_id`) )&nbsp;ENGINE=InnoDB&nbsp;AUTO_INCREMENT=3&nbsp;DEFAULT&nbsp;CHARSET=latin1 1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>另一方面，SERIAL DEFAULT VALUE是NOT NULL AUTO_INCREMENT UNIQUE KEY的简写。整数数值类型（如TINYINT，SMALLINT，MEDIUMINT，INT和BIGINT）支持SERIAL DEFAULT VALUE关键字。</p> <h2>示例</h2> <pre>mysql&gt;&nbsp;Create&nbsp;Table&nbsp;Student_serial(Student_id&nbsp;SERIAL,&nbsp;Name&nbsp;VArchar(20));  mysql&gt;&nbsp;Insert&nbsp;into&nbsp;Student_serial(Name)&nbsp;values('RAM'),('SHYAM'); Records:&nbsp;2&nbsp;Duplicates:&nbsp;0&nbsp;Warnings:&nbsp;0  mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;Student_serial; +------------+-------+ |&nbsp;Student_id&nbsp;|&nbsp;Name&nbsp;| +------------+-------+ |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;|&nbsp;RAM&nbsp;&nbsp;&nbsp;| |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;|&nbsp;SHYAM&nbsp;| +------------+-------+ 2&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)  mysql&gt;&nbsp;Show&nbsp;Create&nbsp;Table&nbsp;Student_serial\G ***************************&nbsp;1.&nbsp;row&nbsp;*************************** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table:&nbsp;Student_serial Create&nbsp;Table:&nbsp;CREATE&nbsp;TABLE&nbsp;`student_serial`&nbsp;( &nbsp;&nbsp;&nbsp;`Student_id`&nbsp;bigint(20)&nbsp;unsigned&nbsp;NOT&nbsp;NULL&nbsp;AUTO_INCREMENT, &nbsp;&nbsp;&nbsp;`Name`&nbsp;varchar(20)&nbsp;DEFAULT&nbsp;NULL, &nbsp;&nbsp;&nbsp;UNIQUE&nbsp;KEY&nbsp;`Student_id`&nbsp;(`Student_id`) )&nbsp;ENGINE=InnoDB&nbsp;AUTO_INCREMENT=3&nbsp;DEFAULT&nbsp;CHARSET=latin1 1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-92644.htm">深圳市宠物领养中心在哪里 深圳市宠物领养中心在哪里啊</a></p>
+                                        <p>下一个：<a href="/news/article-93403.htm">重庆宠物领养机构（重庆宠物领养微信群）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-70298.htm" title="Java中的守护程序线程和用户线程之间的区别">Java中的守护程序线程和用户线程之间的区别</a></li>
+                        <li class="py-2"><a href="/news/article-78353.htm" title="c# 一些警告的处理方法">c# 一些警告的处理方法</a></li>
+                        <li class="py-2"><a href="/news/article-65789.htm" title="瑞鹏宠物医院收费价目表最新消息（瑞鹏宠物医院企查查）">瑞鹏宠物医院收费价目表最新消息（瑞鹏宠物医院企查查）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-node-share.htm" title="3月8日|最高速度22M/S，2025最新ClashVerge免费节点高速订阅链接">3月8日|最高速度22M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-24-node-share.htm" title="3月24日|最高速度20.8M/S，2025最新ClashVerge免费节点高速订阅链接">3月24日|最高速度20.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-89695.htm" title="上海动物防疫站打疫苗时间（上海动物疫苗控制中心）">上海动物防疫站打疫苗时间（上海动物疫苗控制中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-free-v2ray-subscribe.htm" title="4月12日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接">4月12日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-76980.htm" title="做宠物粮食（做宠物粮食需要什么手续）">做宠物粮食（做宠物粮食需要什么手续）</a></li>
+                        <li class="py-2"><a href="/news/article-92644.htm" title="深圳市宠物领养中心在哪里 深圳市宠物领养中心在哪里啊">深圳市宠物领养中心在哪里 深圳市宠物领养中心在哪里啊</a></li>
+                        <li class="py-2"><a href="/news/article-69649.htm" title="拼多多网店怎么注册开店（拼多多网店怎么注册开店要交钱吗）">拼多多网店怎么注册开店（拼多多网店怎么注册开店要交钱吗）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
