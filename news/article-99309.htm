@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-99309.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>python读取hive数据库</title>
+        <meta name="description" content="在大数据工作中经常碰到需要将hive查询数据导入到mysql的需求，常见的方法主要有两种，一是impala，另一种则是pyhive。 一、pyhive方式连接hive数据库 首先是配置相关的环境及使用" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-99309.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="python读取hive数据库" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/ae614539e76be851829960e412a9b1c7.webp" />
+        <meta property="og:release_date" content="2025-04-19T08:57:41" />
+    <meta property="og:updated_time" content="2025-04-19T08:57:41" />
+        <meta property="og:description" content="在大数据工作中经常碰到需要将hive查询数据导入到mysql的需求，常见的方法主要有两种，一是impala，另一种则是pyhive。 一、pyhive方式连接hive数据库 首先是配置相关的环境及使用" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python读取hive数据库">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            python读取hive数据库                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="content_views" class="htmledit_views"> <h2>在<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=%E5%A4%A7%E6%95%B0%E6%8D%AE&amp;spm=1001.2101.3001.7020"  title="大数据" rel="nofollow">大数据</a>工作中经常碰到需要将hive查询数据导入到mysql的需求，常见的方法主要有两种，一是impala，另一种则是pyhive。</h2> <h2>一、pyhive方式连接hive数据库</h2> <p>首先是配置相关的环境及使用的库。sasl、thrift、thrift_sasl、pyhive。</p> <p>&nbsp;其中sasl安装较为麻烦一点，在Linux下直接安装可能会出现sasl.h头文件丢失问题，原因是sasl的源码已经许久没有维护了，代码结构与现有的代码结构不一样，下面分别给出win及Linux下的安装方法。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl"  title="https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl" rel="nofollow">https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl</a></p> <p><strong>windows下：</strong></p> <p>1.下载sasl安装文件，进行离线安装sasl,下载网址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl"  title="https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl" rel="nofollow">https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl</a>，版本选择适合自己的即可。</p> <p>2.安装:</p> <p>pip install sasl-0.2.1-cp36-cp36m-win_amd64.whl<br /> pip install thrift -i https://pypi.tuna.tsinghua.edu.cn/simple<br /> pip install thrift_sasl==0.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple<br /> pip install pyhive -i https://pypi.tuna.tsinghua.edu.cn/simple</p> <p><strong>Linux下：</strong></p> <p>如果存在sasl.h头文件问题，可以通过pip安装libsasl2-dev包，再安装sasl</p> <p>apt-get install libsasl2-dev<br /> pip install sasl<br /> pip install thrift&nbsp;<br /> pip install thrift-sasl<br /> pip install PyHive</p> <p>注意不要漏装，否则报错。</p> <h2><strong>二、impala方式连接hive数据库</strong></h2> <p>直接 pip install impala 即可</p> <p>下载好相关库后，我们直接上代码。</p> <pre><code class="language-python">from impala.dbapi import connect from impala.util import as_pandas import pandas as pd from pyhive import hive  class LinkHive(object):     def __init__(self,host,port,database):         self.host = host         self.port = port         # self.username = username         # self.password = password         self.database = database      def __link(self):         # 1、pyhive连接         self.conn = hive.Connection(host=self.host,port=self.port,database=self.database)                  #2、impla连接         # self.conn = connect(host=self.host, port=self.port, database=self.database)         self.cur = self.conn.cursor()         # CUSTOM  LDAP     def selectdata(self,sql):         try:             self.__link()         except Exception as e:              print('link error:')             print(e)         try:             #c = self.cur.fetchall()             pd.read_sql(sql,self.conn) //pihive读取数据             # self.cur.execute(sql) //impala读取数据             # result = as_pandas(self.cur) //impala读取数据后转为pandas的DataFrame         except Exception as e:              print('query error:')             print(e)         # 关闭连接 释放资源         self.cur.close()         self.conn.close()         return result</code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-98562.htm">家有宠物不能养的植物（养宠物不能养什么花）</a></p>
+                                        <p>下一个：<a href="/news/article-99310.htm">python数据分析与挖掘实战————银行分控模型（几种算法模型的比较）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-93954.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-ssr-subscribe.htm" title="3月5日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接">3月5日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-79724.htm" title="张雪峰动物医学考研（张雪峰医学考研怎么选学校）">张雪峰动物医学考研（张雪峰医学考研怎么选学校）</a></li>
+                        <li class="py-2"><a href="/news/article-68337.htm" title="免费领养狗狗的app（免费领养狗狗的文案）">免费领养狗狗的app（免费领养狗狗的文案）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-node-share-links.htm" title="3月3日|最高速度18.5M/S，2025最新ClashVerge免费节点高速订阅链接">3月3日|最高速度18.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-free-node-subscribe-links.htm" title="3月31日|最高速度20.5M/S，2025最新ClashVerge免费节点高速订阅链接">3月31日|最高速度20.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-83919.htm" title="仓鼠皮癣怎么治（仓鼠皮癣会自愈吗）">仓鼠皮癣怎么治（仓鼠皮癣会自愈吗）</a></li>
+                        <li class="py-2"><a href="/news/article-76318.htm" title="宠物粮食品牌起名大全图片及名字怎么起（宠物粮品牌排行）">宠物粮食品牌起名大全图片及名字怎么起（宠物粮品牌排行）</a></li>
+                        <li class="py-2"><a href="/news/article-67069.htm" title="宠物猫疫苗要多少钱一次（宠物猫疫苗多少钱打一次）">宠物猫疫苗要多少钱一次（宠物猫疫苗多少钱打一次）</a></li>
+                        <li class="py-2"><a href="/news/article-96419.htm" title="python之33个关键字详解_Python之33个关键字是哪些">python之33个关键字详解_Python之33个关键字是哪些</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">65</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
