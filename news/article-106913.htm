@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashvergenode.github.io/news/article-106913.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>js实现商城放大镜效果</title>
+        <meta name="description" content="css部分 * {             margin: 0;             padding: 0;         }          /* img {             ver" />
+        <link rel="icon" href="/assets/website/img/clashvergenode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="ClashVergeNode节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashvergenode.github.io/news/article-106913.htm" />
+    <meta property="og:site_name" content="ClashVergeNode节点订阅站" />
+    <meta property="og:title" content="js实现商城放大镜效果" />
+    <meta property="og:image" content="https://clashvergenode.github.io/uploads/20240519/67466a9cff8b200e7800134d02f86132.webp" />
+        <meta property="og:release_date" content="2025-04-29T08:01:45" />
+    <meta property="og:updated_time" content="2025-04-29T08:01:45" />
+        <meta property="og:description" content="css部分 * {             margin: 0;             padding: 0;         }          /* img {             ver" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/bootstrap-5.0.0-beta2.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/clashvergenode/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="js实现商城放大镜效果">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQG4M5VMSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQG4M5VMSY');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+<!-- ========================= preloader start ========================= -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
+<!-- ========================= header start ========================= -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                                                    <span>Clash Verge Node</span>
+                                                </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                    <a href="/">首页</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/free-nodes/">免费节点</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/paid-subscribe/">推荐机场</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/client.htm">客户端</a>
+                                </li>
+                                                                <li class="nav-item">
+                                    <a href="/news/">新闻资讯</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ========================= header end ========================= -->
+    <!-- ========================= hero-section start ========================= -->
+    <section id="category" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            js实现商城放大镜效果                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                        <img src="/assets/website/img/clashvergenode/hero/hero-img.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= hero-section end ========================= -->
+    <!-- ========================= about-section start ========================= -->
+    <section id="about" class="about-section pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p><strong>css部分</strong></p> <pre><code class="prism language-css"><span class="token selector">*</span> <span class="token punctuation">{<!-- --></span>             <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>             <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>         <span class="token punctuation">}</span>          <span class="token comment">/* img {             vertical-align: top;             } */</span>          <span class="token selector">.box</span> <span class="token punctuation">{<!-- --></span>             <span class="token property">width</span><span class="token punctuation">:</span> 350px<span class="token punctuation">;</span>             <span class="token property">height</span><span class="token punctuation">:</span> 350px<span class="token punctuation">;</span>             <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>             <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>             <span class="token property">margin</span><span class="token punctuation">:</span> 150px 0 0 300px<span class="token punctuation">;</span>         <span class="token punctuation">}</span>          <span class="token selector">.big</span> <span class="token punctuation">{<!-- --></span>             <span class="token property">width</span><span class="token punctuation">:</span> 450px<span class="token punctuation">;</span>             <span class="token property">height</span><span class="token punctuation">:</span> 450px<span class="token punctuation">;</span>             <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>             <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>             <span class="token property">left</span><span class="token punctuation">:</span> 400px<span class="token punctuation">;</span>             <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>             <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>             <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>         <span class="token punctuation">}</span>          <span class="token selector">.small</span> <span class="token punctuation">{<!-- --></span>             <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>         <span class="token punctuation">}</span>          <span class="token selector">.mask</span> <span class="token punctuation">{<!-- --></span>             <span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>             <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>             <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span>255, 255, 0, 0.4<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>             <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>             <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>             <span class="token property">cursor</span><span class="token punctuation">:</span> move<span class="token punctuation">;</span>             <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>         <span class="token punctuation">}</span>          <span class="token selector">.big img</span> <span class="token punctuation">{<!-- --></span>             <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>             <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>             <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>         <span class="token punctuation">}</span> </code></pre> <p><strong>HTML部分</strong></p> <pre><code class="prism language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>oBox<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>small<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>oSmall<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./images/001.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mask<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>oMask<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>big<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>oBig<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./images/0001.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span> </code></pre> <p><strong>js部分</strong></p> <pre><code class="prism language-js"><span class="token comment">//第一步获取节点</span>     <span class="token keyword">let</span> box <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'oBox'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token keyword">let</span> small <span class="token operator">=</span> box<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//获取盒子的第一个子节点samll</span>     <span class="token keyword">let</span> big <span class="token operator">=</span> box<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//获取盒子的第二个子节点big</span>     <span class="token keyword">let</span> mask <span class="token operator">=</span> small<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//获取小盒子里的遮罩</span>     <span class="token keyword">let</span> bigImg <span class="token operator">=</span> big<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//获取大盒子里的图片</span>       <span class="token comment">//鼠标进入small 遮罩(mask)大盒子(big)display:block</span>     small<span class="token punctuation">.</span><span class="token function-variable function">onmouseover</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         mask<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span><span class="token punctuation">;</span>         big<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span><span class="token punctuation">;</span>      <span class="token punctuation">}</span><span class="token punctuation">;</span>      <span class="token comment">//鼠标离开small 遮罩(mask)大盒子(big)display:none</span>     small<span class="token punctuation">.</span><span class="token function-variable function">onmouseout</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         mask<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>         big<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span><span class="token punctuation">;</span>      <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>     <span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>       small<span class="token punctuation">.</span><span class="token function-variable function">onmousemove</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>even<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">var</span> even <span class="token operator">=</span> even <span class="token operator">||</span> window<span class="token punctuation">.</span>event<span class="token punctuation">;</span>          <span class="token comment">// 获取鼠标在small里的坐标</span>         <span class="token keyword">let</span> x <span class="token operator">=</span> even<span class="token punctuation">.</span>clientX <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>offsetParent<span class="token punctuation">.</span>offsetLeft <span class="token operator">-</span> mask<span class="token punctuation">.</span>offsetWidth <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>         <span class="token keyword">let</span> y <span class="token operator">=</span> even<span class="token punctuation">.</span>clientY <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>offsetParent<span class="token punctuation">.</span>offsetTop <span class="token operator">-</span> mask<span class="token punctuation">.</span>offsetHeight <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>           <span class="token comment">// 限制住鼠标的坐标导致遮罩的位置越界</span>         <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&gt;</span> small<span class="token punctuation">.</span>offsetWidth <span class="token operator">-</span> mask<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             x <span class="token operator">=</span> small<span class="token punctuation">.</span>offsetWidth <span class="token operator">-</span> mask<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>         <span class="token punctuation">}</span>          <span class="token keyword">if</span> <span class="token punctuation">(</span>y <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>y <span class="token operator">&gt;</span> small<span class="token punctuation">.</span>offsetHeight <span class="token operator">-</span> mask<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             y <span class="token operator">=</span> small<span class="token punctuation">.</span>offsetHeight <span class="token operator">-</span> mask<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         mask<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>         mask<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> y <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>         <span class="token comment">//注意大图片的方向</span>         bigImg<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token operator">-</span>y <span class="token operator">*</span> big<span class="token punctuation">.</span>offsetHeight <span class="token operator">/</span> small<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>         bigImg<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token operator">-</span>x <span class="token operator">*</span> big<span class="token punctuation">.</span>offsetWidth <span class="token operator">/</span> small<span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span><span class="token punctuation">;</span> </code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-106259.htm">动物打疫苗后的不良反应有哪些症状（动物打了疫苗的,伤了人怎么办）</a></p>
+                                        <p>下一个：<a href="/news/article-106914.htm">开动物医院的条件有哪些方面（开办一间动物医院需要什么资质）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-30-node-share-links.htm" title="4月30日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接">4月30日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-83920.htm" title="中国最大的宠物粮生产厂家 中国最大的宠物粮生产厂家在哪里">中国最大的宠物粮生产厂家 中国最大的宠物粮生产厂家在哪里</a></li>
+                        <li class="py-2"><a href="/news/article-72945.htm" title="动物疫病预防控制中心打疫苗吗要钱吗知乎（动物疫病预防控制中心可以打疫苗吗）">动物疫病预防控制中心打疫苗吗要钱吗知乎（动物疫病预防控制中心可以打疫苗吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-free-subscribe-node.htm" title="4月2日|最高速度23M/S，2025最新ClashVerge免费节点高速订阅链接">4月2日|最高速度23M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-104754.htm" title="昆明什么地方可以领养狗狗（昆明在哪里可以领养狗）">昆明什么地方可以领养狗狗（昆明在哪里可以领养狗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-28-clash-v2ray-ss-ssr.htm" title="4月28日|最高速度18.5M/S，2025最新ClashVerge免费节点高速订阅链接">4月28日|最高速度18.5M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-91114.htm" title="宠物领养app申请界面在哪找（宠物领养app申请界面在哪找到）">宠物领养app申请界面在哪找（宠物领养app申请界面在哪找到）</a></li>
+                        <li class="py-2"><a href="/news/article-65790.htm" title="猫咪驱虫的多少钱（猫咪驱虫多少钱一针）">猫咪驱虫的多少钱（猫咪驱虫多少钱一针）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-27-shadowrocket-node.htm" title="4月27日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接">4月27日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-clash-v2ray-ss-ssr.htm" title="3月25日|最高速度23M/S，2025最新ClashVerge免费节点高速订阅链接">3月25日|最高速度23M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= about-section end ========================= -->
+        <!-- ========================= footer start ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy-right">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p>
+                    ClashVergeNode节点订阅站 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================= footer end ========================= -->
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/clashvergenode/jquery-3.2.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/polifill.js"></script>
+    <script src="/assets/website/js/frontend/clashvergenode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
