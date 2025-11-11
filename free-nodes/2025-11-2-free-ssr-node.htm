@@ -391,34 +391,9 @@ WebSocket over TLS 比较稳但开销大，gRPC虽然现代化但路由支持有
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 的 Web 面板有什么用途？</h5></div>
+    <div class="panel-heading"><h5>SSR 还能在现代网络环境下正常使用吗？</h5></div>
     <div class="panel-body">
-        Hiddify Next 自带 Web 管理面板，管理员可通过浏览器管理用户、监控流量、生成订阅链接并部署节点。无需命令行操作，极大提高管理效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的 PAC 模式如何优化访问？</h5></div>
-    <div class="panel-body">
-        PAC 模式可根据规则动态判断流量是否走代理，无需手动切换节点。适合国内外混合访问场景，提高访问速度和稳定性，减少误操作导致的访问失败。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 如何提升节点连接效率？</h5></div>
-    <div class="panel-body">
-        Matsuri 是一个支持多协议的代理工具，强调快速连接与自动切换功能。它可以根据延迟自动选择最优节点，减少手动切换的繁琐过程，保证网络体验的流畅性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 支持 Reality 吗？</h5></div>
-    <div class="panel-body">
-        支持。Hiddify Next 基于 sing-box 内核，可加载 Vless+Reality、Trojan+TLS 等高级协议配置。用户可直接导入机场订阅，无需手动修改复杂参数。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 与 Clash 有什么关系？</h5></div>
-    <div class="panel-body">
-        Surfboard 是一款基于 Clash 核心的 iOS 应用，专为苹果用户设计。它通过友好的界面实现分流管理、节点切换和延迟测试等功能。与 Clash 类似，Surfboard 也支持订阅更新和多种代理协议，兼容性非常好。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何通过域名规则实现精准分流？</h5></div>
-    <div class="panel-body">
-        Sing-box 支持根据域名匹配流量，将不同网站或应用流量分配到指定节点。结合策略组，可实现自动切换最优节点，优化访问速度和网络稳定性，提高整体使用体验。<hr />    </div>
+        虽然 SSR 的项目已经停止维护，但部分服务器依然提供 SSR 节点。只要服务器配置得当，SSR 在一些地区仍然可以稳定使用。不过，它的安全性和兼容性不如 V2Ray 或 Trojan 等现代协议。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 的多路复用在短连接场景下有什么优势？</h5></div>
@@ -426,9 +401,24 @@ WebSocket over TLS 比较稳但开销大，gRPC虽然现代化但路由支持有
         多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适合高频短连接应用，如游戏和即时通讯，能提高吞吐量和连接稳定性，优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 还能在现代网络环境下正常使用吗？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 如何提升节点连接效率？</h5></div>
     <div class="panel-body">
-        虽然 SSR 的项目已经停止维护，但部分服务器依然提供 SSR 节点。只要服务器配置得当，SSR 在一些地区仍然可以稳定使用。不过，它的安全性和兼容性不如 V2Ray 或 Trojan 等现代协议。<hr />    </div>
+        Matsuri 是一个支持多协议的代理工具，强调快速连接与自动切换功能。它可以根据延迟自动选择最优节点，减少手动切换的繁琐过程，保证网络体验的流畅性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的 PAC 模式如何优化访问？</h5></div>
+    <div class="panel-body">
+        PAC 模式可根据规则动态判断流量是否走代理，无需手动切换节点。适合国内外混合访问场景，提高访问速度和稳定性，减少误操作导致的访问失败。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 的 Web 面板有什么用途？</h5></div>
+    <div class="panel-body">
+        Hiddify Next 自带 Web 管理面板，管理员可通过浏览器管理用户、监控流量、生成订阅链接并部署节点。无需命令行操作，极大提高管理效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何通过域名规则实现精准分流？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持根据域名匹配流量，将不同网站或应用流量分配到指定节点。结合策略组，可实现自动切换最优节点，优化访问速度和网络稳定性，提高整体使用体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何安全地共享订阅链接而不泄露个人信息？</h5></div>
@@ -438,7 +428,17 @@ WebSocket over TLS 比较稳但开销大，gRPC虽然现代化但路由支持有
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何在 Windows 上用 Wireshark 分析代理流量以排查问题？</h5></div>
     <div class="panel-body">
-        使用 Wireshark 抓取对应网卡流量，结合过滤器（例如 host <server_ip> 或 tcp.port==<port>）分析握手与数据包内容。注意 TLS/QUIC 流量为加密内容，仅能通过元信息（时延、丢包）判断异常，不要尝试解密用户隐私。    </div>
+        使用 Wireshark 抓取对应网卡流量，结合过滤器（例如 host <server_ip> 或 tcp.port==<port>）分析握手与数据包内容。注意 TLS/QUIC 流量为加密内容，仅能通过元信息（时延、丢包）判断异常，不要尝试解密用户隐私。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 支持 Reality 吗？</h5></div>
+    <div class="panel-body">
+        支持。Hiddify Next 基于 sing-box 内核，可加载 Vless+Reality、Trojan+TLS 等高级协议配置。用户可直接导入机场订阅，无需手动修改复杂参数。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 与 Clash 有什么关系？</h5></div>
+    <div class="panel-body">
+        Surfboard 是一款基于 Clash 核心的 iOS 应用，专为苹果用户设计。它通过友好的界面实现分流管理、节点切换和延迟测试等功能。与 Clash 类似，Surfboard 也支持订阅更新和多种代理协议，兼容性非常好。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -467,16 +467,16 @@ WebSocket over TLS 比较稳但开销大，gRPC虽然现代化但路由支持有
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-24-shadowrocket-node.htm" title="10月24日|最高速度21.1M/S，2025最新ClashVerge免费节点高速订阅链接">10月24日|最高速度21.1M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-5-clash-node.htm" title="11月5日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接">11月5日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-11-free-v2ray.htm" title="10月11日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接">10月11日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-20-free-v2ray-subscribe.htm" title="10月20日|最高速度21.2M/S，2025最新ClashVerge免费节点高速订阅链接">10月20日|最高速度21.2M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-31-free-v2ray.htm" title="10月31日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接">10月31日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-3-clash-v2ray-ss-ssr.htm" title="10月3日|最高速度19.7M/S，2025最新ClashVerge免费节点高速订阅链接">10月3日|最高速度19.7M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-23-free-ssr-subscribe.htm" title="10月23日|最高速度18M/S，2025最新ClashVerge免费节点高速订阅链接">10月23日|最高速度18M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-10-free-clash-subscribe.htm" title="10月10日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接">10月10日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-2-free-ssr-node.htm" title="11月2日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接">11月2日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-17-node-share-links.htm" title="10月17日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接">10月17日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-23-free-ssr-subscribe.htm" title="10月23日|最高速度18M/S，2025最新ClashVerge免费节点高速订阅链接">10月23日|最高速度18M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-6-free-high-speed-nodes.htm" title="11月6日|最高速度20M/S，2025最新ClashVerge免费节点高速订阅链接">11月6日|最高速度20M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-11-node-share.htm" title="11月11日|最高速度19M/S，2025最新ClashVerge免费节点高速订阅链接">11月11日|最高速度19M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-26-free-node-subscribe-links.htm" title="10月26日|最高速度21.1M/S，2025最新ClashVerge免费节点高速订阅链接">10月26日|最高速度21.1M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-25-shadowrocket-node.htm" title="10月25日|最高速度19.6M/S，2025最新ClashVerge免费节点高速订阅链接">10月25日|最高速度19.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-27-free-subscribe-node.htm" title="10月27日|最高速度18.7M/S，2025最新ClashVerge免费节点高速订阅链接">10月27日|最高速度18.7M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-7-free-v2ray-subscribe.htm" title="10月7日|最高速度18.9M/S，2025最新ClashVerge免费节点高速订阅链接">10月7日|最高速度18.9M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-5-clash-node.htm" title="11月5日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接">11月5日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-10-free-ssr-node.htm" title="11月10日|最高速度23M/S，2025最新ClashVerge免费节点高速订阅链接">11月10日|最高速度23M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -488,7 +488,7 @@ WebSocket over TLS 比较稳但开销大，gRPC虽然现代化但路由支持有
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">5</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
