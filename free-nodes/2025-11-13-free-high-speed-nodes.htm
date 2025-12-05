@@ -400,14 +400,14 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
         VMess over WebSocket 可以伪装成正常的 Web 流量，适用于被封锁较严格的网络环境。它通过将代理流量嵌入 WebSocket 协议中，使流量更难被检测和拦截。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Shadowrocket 节点延迟排序如何提升访问体验？</h5></div>
+    <div class="panel-body">
+        Shadowrocket 会测速节点延迟和丢包率，并优先使用低延迟节点。结合策略组和分流规则，可保证网页、视频和游戏流量通过最优节点，提高访问速度和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 还能在现代网络环境下正常使用吗？</h5></div>
     <div class="panel-body">
         虽然 SSR 的项目已经停止维护，但部分服务器依然提供 SSR 节点。只要服务器配置得当，SSR 在一些地区仍然可以稳定使用。不过，它的安全性和兼容性不如 V2Ray 或 Trojan 等现代协议。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 订阅被墙或无法下载如何绕过？</h5></div>
-    <div class="panel-body">
-        若订阅源被直接屏蔽，可尝试先在境外服务器上用代理代理获取订阅并通过中转服务器公开一个新的链接；或者使用 HTTPS 与 CDN 中转、或将订阅以文件形式托管在不易被封的云存储上。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 可以结合规则实现广告屏蔽吗？</h5></div>
@@ -415,14 +415,9 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
         可以。Surfboard 支持通过规则文件匹配广告域名或 URL，将其阻断或重定向。结合策略组定期更新规则，可以实现自动广告屏蔽，提升网页浏览体验并节省带宽。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 节点无法连接时应如何排查？</h5></div>
+    <div class="panel-heading"><h5>SSR 的加密方式推荐使用哪种？</h5></div>
     <div class="panel-body">
-        遇到 Trojan 无法连接时，需检查服务器证书是否有效、端口是否开放、密码配置是否匹配。还应确认防火墙未阻断相关端口，并尝试切换 TLS 版本或使用 IP 地址连接。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray QUIC 模式适合哪些网络环境？</h5></div>
-    <div class="panel-body">
-        QUIC 基于 UDP 协议，支持多路复用和零握手，适合高丢包和不稳定网络环境。可提升视频、游戏和即时通讯流量的稳定性和访问速度，提高网络体验。<hr />    </div>
+        SSR 支持多种加密方式，如 aes-256-cfb、chacha20、rc4-md5 等。建议优先选择 chacha20 系列算法，在移动设备上性能更佳，同时具有较强的安全性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何优化 Clash DNS 解析速度？</h5></div>
@@ -430,19 +425,24 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
         可在配置文件中启用 fake-ip 模式或使用高质量的 DoH 服务（如 Cloudflare、AliDNS）。同时将 `fallback-filter.geoip` 设置为 true，避免国内域名被错误解析到境外，提高解析效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan 节点无法连接时应如何排查？</h5></div>
+    <div class="panel-body">
+        遇到 Trojan 无法连接时，需检查服务器证书是否有效、端口是否开放、密码配置是否匹配。还应确认防火墙未阻断相关端口，并尝试切换 TLS 版本或使用 IP 地址连接。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 订阅被墙或无法下载如何绕过？</h5></div>
+    <div class="panel-body">
+        若订阅源被直接屏蔽，可尝试先在境外服务器上用代理代理获取订阅并通过中转服务器公开一个新的链接；或者使用 HTTPS 与 CDN 中转、或将订阅以文件形式托管在不易被封的云存储上。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>为什么某些网站在通过代理后登录会频繁要求二次验证？</h5></div>
     <div class="panel-body">
         代理会改变访问 IP 与地理位置，目标站点可能检测到异常登录并触发验证码或二次验证。建议对常用账户使用白名单 IP 或在代理配置中对特定站点设置直连来避免频繁验证。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 节点延迟排序如何提升访问体验？</h5></div>
+    <div class="panel-heading"><h5>V2Ray QUIC 模式适合哪些网络环境？</h5></div>
     <div class="panel-body">
-        Shadowrocket 会测速节点延迟和丢包率，并优先使用低延迟节点。结合策略组和分流规则，可保证网页、视频和游戏流量通过最优节点，提高访问速度和稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的加密方式推荐使用哪种？</h5></div>
-    <div class="panel-body">
-        SSR 支持多种加密方式，如 aes-256-cfb、chacha20、rc4-md5 等。建议优先选择 chacha20 系列算法，在移动设备上性能更佳，同时具有较强的安全性。    </div>
+        QUIC 基于 UDP 协议，支持多路复用和零握手，适合高丢包和不稳定网络环境。可提升视频、游戏和即时通讯流量的稳定性和访问速度，提高网络体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -471,16 +471,16 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-27-free-subscribe-node.htm" title="10月27日|最高速度18.7M/S，2025最新ClashVerge免费节点高速订阅链接">10月27日|最高速度18.7M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-clash-subscribe.htm" title="11月7日|最高速度19.7M/S，2025最新ClashVerge免费节点高速订阅链接">11月7日|最高速度19.7M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-9-shadowrocket-node.htm" title="10月9日|最高速度18.3M/S，2025最新ClashVerge免费节点高速订阅链接">10月9日|最高速度18.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-8-clash-node-daily-updates.htm" title="10月8日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接">10月8日|最高速度20.4M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-10-free-clash-subscribe.htm" title="10月10日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接">10月10日|最高速度20.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-11-free-v2ray.htm" title="10月11日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接">10月11日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-26-free-node-subscribe-links.htm" title="10月26日|最高速度21.1M/S，2025最新ClashVerge免费节点高速订阅链接">10月26日|最高速度21.1M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-18-free-ssr-node.htm" title="11月18日|最高速度20.3M/S，2025最新ClashVerge免费节点高速订阅链接">11月18日|最高速度20.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-25-shadowrocket-node.htm" title="10月25日|最高速度19.6M/S，2025最新ClashVerge免费节点高速订阅链接">10月25日|最高速度19.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-17-clash-node-daily-updates.htm" title="11月17日|最高速度19.9M/S，2025最新ClashVerge免费节点高速订阅链接">11月17日|最高速度19.9M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-9-free-high-speed-nodes.htm" title="11月9日|最高速度18.6M/S，2025最新ClashVerge免费节点高速订阅链接">11月9日|最高速度18.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-6-free-high-speed-nodes.htm" title="11月6日|最高速度20M/S，2025最新ClashVerge免费节点高速订阅链接">11月6日|最高速度20M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-15-clash-node.htm" title="11月15日|最高速度18.8M/S，2025最新ClashVerge免费节点高速订阅链接">11月15日|最高速度18.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-2-free-v2ray-subscribe.htm" title="12月2日|最高速度22.6M/S，2025最新ClashVerge免费节点高速订阅链接">12月2日|最高速度22.6M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-26-node-share-links.htm" title="11月26日|最高速度18.3M/S，2025最新ClashVerge免费节点高速订阅链接">11月26日|最高速度18.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-12-free-v2ray.htm" title="11月12日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接">11月12日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-4-node-share-links.htm" title="12月4日|最高速度21M/S，2025最新ClashVerge免费节点高速订阅链接">12月4日|最高速度21M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-14-free-clash-subscribe.htm" title="11月14日|最高速度22.1M/S，2025最新ClashVerge免费节点高速订阅链接">11月14日|最高速度22.1M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-20-free-high-speed-nodes.htm" title="11月20日|最高速度21.4M/S，2025最新ClashVerge免费节点高速订阅链接">11月20日|最高速度21.4M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-5-clash-node.htm" title="11月5日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接">11月5日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -492,10 +492,10 @@ A：可以。通过策略路由或MAC地址绑定设置，只让部分设备走V
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                     </ul>
     </div>
