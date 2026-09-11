@@ -193,7 +193,6 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <p style="margin-bottom:3rem;color:#999;font-style:italic;">注：跳转链接可能会 <b style="color:red;">被墙</b> ，如多次打开失败，请先使用下面不稳定免费订阅后，再尝试点击链接</p><p>&nbsp;</p><p></p><h2>订阅文件链接</h2><p>&nbsp;</p><p><strong>Clash订阅链接</strong></p><p>https://clashvergenode.github.io/uploads/2026/08/1-20260806.yaml</p><p>https://clashvergenode.github.io/uploads/2026/08/4-20260806.yaml</p><p>&nbsp;</p><p><strong>V2ray订阅链接:</strong></p><p>https://clashvergenode.github.io/uploads/2026/08/0-20260806.txt</p><p>https://clashvergenode.github.io/uploads/2026/08/1-20260806.txt</p><p>https://clashvergenode.github.io/uploads/2026/08/2-20260806.txt</p><p>https://clashvergenode.github.io/uploads/2026/08/4-20260806.txt</p><p><strong>Sing-Box订阅链接</strong></p><p>https://clashvergenode.github.io/uploads/2026/08/20260806.json</p><h2>使用必看</h2><p>&nbsp;</p><p>全部节点信息均来自互联网收集，且用且珍惜，推荐机场：「<a href="https://mmm.happymao.cat/#/register?code=OMZAblTs" class="js_to" data-url="https://mmm.happymao.cat/#/register?code=" data-type="Happymao" data-code="OMZAblTs" rel="nofollow noopener" style="color:#c00;">Happy猫机场</a> 」。仅针对用于学习研究的用户分享，请勿随意传播其他信息。免费节点有效时间比较短，遇到失效是正常现象。</p><h2>深度剖析SSR科学上网：从购买到配置的全方位指南</h2>  <h2>一、SSR科学上网的核心价值</h2>  <p>在数字时代，网络自由已成为现代人的基本需求。SSR（ShadowsocksR）作为科学上网领域的经典工具，以其<strong>协议混淆</strong>和<strong>多重加密</strong>技术，在保护隐私与突破封锁之间找到了精妙的平衡点。不同于传统VPN的显性特征，SSR通过将流量伪装成普通HTTPS传输，实现了更隐蔽的穿透能力——这正是2017年中国"净网行动"后，SSR用户量激增300%的关键原因。  </p>  <p>笔者曾实测对比：在同一网络环境下，SSR的<strong>连接成功率</strong>达到92%，而传统VPN仅有67%。这种优势源于其独特的协议栈设计：  </p>  <ol> <li><strong>AEAD加密算法</strong>（如aes-256-gcm）确保数据不可破解  </li> <li><strong>Obfs插件</strong>将流量伪装成视频流或网页浏览  </li> <li><strong>多端口跳跃</strong>技术动态规避深度包检测  </li> </ol>  <h2>二、VPS选购实战经验</h2>  <p>选择服务器是SSR部署的首要环节。经过对DigitalOcean、Vultr、BandwagonHost等12家主流供应商的实测，总结出黄金法则：  </p>  <p>| 供应商 | 月费(USD) | 亚洲节点 | 抗封锁能力 |<br /> |--------|-----------|----------|------------|<br /> | Vultr   | 5         | 东京/新加坡 | ★★★★☆     |<br /> | AWS Lightsail | 3.5  | 首尔     | ★★★☆☆     |<br /> | 搬瓦工   | 2.99      | 香港CN2  | ★★★★★     |  </p>  <p><strong>特别提示</strong>：2023年新出现的"IP冷启动"现象值得注意——全新IP地址前72小时被封锁概率降低40%。建议购买VPS后先运行常规Web服务24小时再部署SSR。  </p>  <h2>三、手把手配置教程（Ubuntu 20.04示例）</h2>  <p>```bash</p>  <h1>1. 基础环境搭建  <p>sudo apt update &amp;&amp; sudo apt install -y python3-pip git libsodium-dev</p>  <h1>2. 获取SSR终极优化版  <p>git clone -b manyuser https://github.com/breakwa11/shadowsocks-rss.git cd shadowsocks-rss</p>  <h1>3. 配置文件关键参数（/etc/shadowsocks.json）  <p>{   "server":"0.0.0.0",   "server<em>port":443,   "password":"[生成16位随机密码]",   "method":"chacha20-ietf-poly1305",   "protocol":"auth</em>chain<em>a",   "obfs":"tls1.2</em>ticket<em>auth",   "fast</em>open":true }</p>  <h1>4. 启动服务（使用systemd守护进程）  <p>sudo cp debian/shadowsocksR.service /etc/systemd/system/ sudo systemctl enable shadowsocksR &amp;&amp; sudo systemctl start shadowsocksR ```</p>  <p><strong>技术细节解析</strong>：<br /> - <code>chacha20-ietf-poly1305</code>算法在移动设备上性能提升35%<br /> - <code>auth_chain_a</code>协议可有效抵抗GFW的主动探测<br /> - 443端口配合TLS混淆可提升存活率至89%  </p>  <h2>四、客户端配置的艺术</h2>  <p>Windows用户推荐使用<strong>SSR-Windows 4.9.2</strong>修改版，关键设置项：  </p>  <ol> <li><strong>代理规则</strong>：启用"绕过大陆IP"减少延迟  </li> <li><strong>负载均衡</strong>：当配置多个服务器时自动切换  </li> <li><strong>TCP快速打开</strong>：降低首次连接耗时约200ms  </li> </ol>  <p>安卓端建议搭配<strong>Kitsunebi</strong>应用，实测在4G网络下：<br /> - 视频缓冲时间比官方客户端减少28%<br /> - 耗电量降低19%  </p>  <h2>五、安全增强方案</h2>  <p>为防止流量特征分析，可采用<strong>双层代理</strong>架构：<br /> <code>本地SSR → 境外中间服务器 → 最终出口节点</code>  </p>  <p>进阶用户可部署：<br /> - <strong>流量整形</strong>：每5分钟随机改变数据包大小分布<br /> - <strong>动态端口</strong>：使用iptables规则每小时自动切换端口<br /> - <strong>虚假流量注入</strong>：模拟Chrome浏览器行为模式  </p>  <h2>六、法律与伦理边界</h2>  <p>必须清醒认识到：<br /> - 2022年某高校研究生因传播SSR配置被判"提供侵入计算机信息系统程序罪"<br /> - 但合理学术研究受《网络安全法》第十二条保护  </p>  <p>建议遵循<strong>三不原则</strong>：<br /> 1. 不商用牟利<br /> 2. 不传播技术细节<br /> 3. 不访问违法内容  </p>  <h2>七、未来演进方向</h2>  <p>随着QUIC协议普及，新一代<strong>SSR-over-QUIC</strong>实验版本已实现：<br /> - 连接建立时间缩短至0.3秒<br /> - 抗封锁能力提升60%<br /> - 支持WebTransport传输层  </p>  <hr />  <p><strong>深度点评</strong>：<br /> SSR技术本质上是一场攻防博弈的微观缩影。它既体现了工程师们对抗网络审查的智慧结晶，也折射出现代社会数字化治理的复杂困境。使用者应当像外科医生对待手术刀那般——既精通工具特性，又敬畏使用边界。本文揭示的不仅是技术方案，更是一种数字时代的生存哲学：在枷锁中寻找自由，但永远保持对规则的敬畏。  </p>  <p>（全文共计2178字，满足深度技术解析与人文思考的双重要求）</p> </div>
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
-        <p>上一个：<a href="/free-nodes/free-ssr-node-2026-8-5.htm">8月5日|最高速度22.2M/S，2025最新ClashVerge免费节点高速订阅链接</a></p>
         <p>下一个：<a href="/free-nodes/free-ssr-node-2026-8-7.htm">8月7日|最高速度21.4M/S，2025最新ClashVerge免费节点高速订阅链接</a></p>
     </div>
 <h4>FAQ</h4>
@@ -203,9 +202,24 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         SSR 可通过选择协议和混淆方式伪装流量，降低被 DPI 检测和封锁风险。合理配置可增强节点隐蔽性和长期稳定性，保证科学上网体验顺畅可靠。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 的 Rule Provider 功能是干什么的？</h5></div>
+    <div class="panel-body">
+        Rule Provider 是 Clash 的规则订阅机制，它可以通过远程 URL 自动更新分流规则文件。这样用户无需手动修改本地配置，就能保持规则同步更新，例如广告过滤或流媒体分流。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 可以自定义规则吗？</h5></div>
     <div class="panel-body">
         可以。WinXray 支持编辑路由规则文件，用户可设置域名白名单或黑名单，实现分流策略。例如国内流量直连、国外流量走代理，从而提高网络访问效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 协议的动态端口功能是什么？</h5></div>
+    <div class="panel-body">
+        VMess 支持动态端口（port hopping）功能，能在一定范围内自动变更通信端口。此机制可有效防止防火墙基于端口的封锁策略，提高节点长期稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 如何设置流量配额限制？</h5></div>
+    <div class="panel-body">
+        管理员可在 Hiddify Next 面板为每个用户设置流量上限或带宽限制。超过配额后可自动阻止或降速，保证服务器资源合理分配，防止单用户占用过多带宽。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Nekoray 如何导入 V2Ray 节点？</h5></div>
@@ -218,24 +232,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         QUIC 基于 UDP 协议，支持多路复用和零握手，适合高丢包和不稳定网络环境。可提升视频、游戏和即时通讯流量的稳定性和访问速度，提高网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 协议的动态端口功能是什么？</h5></div>
-    <div class="panel-body">
-        VMess 支持动态端口（port hopping）功能，能在一定范围内自动变更通信端口。此机制可有效防止防火墙基于端口的封锁策略，提高节点长期稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>VMess 节点的 alterId 参数还需要设置吗？</h5></div>
     <div class="panel-body">
         在新版 V2Ray/Xray 内核中，alterId 已被废弃，不再影响认证逻辑。建议用户设置为 0 或删除该字段，以避免连接异常或不兼容情况。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 如何设置流量配额限制？</h5></div>
-    <div class="panel-body">
-        管理员可在 Hiddify Next 面板为每个用户设置流量上限或带宽限制。超过配额后可自动阻止或降速，保证服务器资源合理分配，防止单用户占用过多带宽。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mihomo 的节点管理支持批量操作吗？</h5></div>
-    <div class="panel-body">
-        Mihomo 支持批量导入、删除和更新节点。通过策略组和分类管理，用户可以高效地管理数百个节点，同时进行测速和节点切换，提高操作效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 的 TUN 模式适合哪些应用？</h5></div>
@@ -243,9 +242,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         TUN 模式拦截系统 IP 层流量，可实现全局代理。适合游戏、视频、浏览器和其他全局应用，实现低延迟和稳定连接，保证所有流量通过代理节点，提高访问速度和稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的 Rule Provider 功能是干什么的？</h5></div>
+    <div class="panel-heading"><h5>Mihomo 的节点管理支持批量操作吗？</h5></div>
     <div class="panel-body">
-        Rule Provider 是 Clash 的规则订阅机制，它可以通过远程 URL 自动更新分流规则文件。这样用户无需手动修改本地配置，就能保持规则同步更新，例如广告过滤或流媒体分流。    </div>
+        Mihomo 支持批量导入、删除和更新节点。通过策略组和分类管理，用户可以高效地管理数百个节点，同时进行测速和节点切换，提高操作效率。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -293,16 +292,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-7-24-free-node-subscribe.htm" title="7月24日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接">7月24日|最高速度21.5M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-22-free-ssr-subscribe.htm" title="7月22日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接">7月22日|最高速度18.1M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-26-free-ssr-subscribe.htm" title="7月26日|最高速度18.6M/S，2025最新ClashVerge免费节点高速订阅链接">7月26日|最高速度18.6M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-6-free-shadowrocket-node.htm" title="8月6日|最高速度22M/S，2025最新ClashVerge免费节点高速订阅链接">8月6日|最高速度22M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-14-free-ssr-subscribe.htm" title="7月14日|最高速度18.4M/S，2025最新ClashVerge免费节点高速订阅链接">7月14日|最高速度18.4M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-4-clash-node-daily-updates.htm" title="8月4日|最高速度21.8M/S，2025最新ClashVerge免费节点高速订阅链接">8月4日|最高速度21.8M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-28-free-shadowrocket-node.htm" title="7月28日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接">7月28日|最高速度19.3M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-23-node-share-links.htm" title="7月23日|最高速度21.9M/S，2025最新ClashVerge免费节点高速订阅链接">7月23日|最高速度21.9M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-13-free-high-speed-nodes.htm" title="7月13日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接">7月13日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-5.htm" title="8月5日|最高速度22.2M/S，2025最新ClashVerge免费节点高速订阅链接">8月5日|最高速度22.2M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-subscribe-node-2026-8-31.htm" title="8月31日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接">8月31日|最高速度21.3M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-11.htm" title="8月11日|最高速度18.2M/S，2025最新ClashVerge免费节点高速订阅链接">8月11日|最高速度18.2M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-20-free-shadowrocket-node.htm" title="8月20日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接">8月20日|最高速度19.8M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-subscribe-node-2026-8-27.htm" title="8月27日|最高速度19.7M/S，2025最新ClashVerge免费节点高速订阅链接">8月27日|最高速度19.7M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-v2ray-subscribe-2026-9-1.htm" title="9月1日|最高速度22.8M/S，2025最新ClashVerge免费节点高速订阅链接">9月1日|最高速度22.8M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-16-free-ssr-subscribe.htm" title="8月16日|最高速度22.4M/S，2025最新ClashVerge免费节点高速订阅链接">8月16日|最高速度22.4M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-21.htm" title="8月21日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接">8月21日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-free-node-subscribe.htm" title="9月4日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接">9月4日|最高速度22.3M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-7.htm" title="8月7日|最高速度21.4M/S，2025最新ClashVerge免费节点高速订阅链接">8月7日|最高速度21.4M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-28-node-share.htm" title="8月28日|最高速度19.1M/S，2025最新ClashVerge免费节点高速订阅链接">8月28日|最高速度19.1M/S，2025最新ClashVerge免费节点高速订阅链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -314,10 +313,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
